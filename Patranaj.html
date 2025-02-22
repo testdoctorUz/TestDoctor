@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+    <title>PIN tekshirish</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            text-align: center;
+            //   margin-top: 50px;    
+            background-color: #f4f4f4;
+        }
+
+        .box {
+            display:);
+            //    width: 250px;
+            margin: 20px auto;
+            padding: 20px;
+            font-size: 24px;
+            border-radius: 10px;
+        }
+
+        .doctor {
+            //   background-color: lightblue;
+            color: darkblue;
+        }
+
+        .nurse {
+            width: 100%;
+            height: 100%;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .container {
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            margin: auto;
+            color: black;
+            display: none;
+            margin-top: -150px;
+            z-index: 9999;
+            background: white;
+            position: relative;
+        }
+
+        .options button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            background: #007bff;
+            color: white;
+        }
+
+        .options button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        #timer {
+            font-size: 18px;
+            font-weight: bold;
+            background: rgba(255, 0, 0, 0.2);
+            color: red;
+            padding: 10px;
+            border-radius: 8px;
+            display: none;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+   
+        
+        .yonalish {
+            width: 90%;
+            box-shadow: 3px 3px 5px lightgray, -3px -3px 5px lightgray;
+            margin-left: 5%;
+            padding: 20px 0px;
+            margin-top:;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    
+  
+    <div id="nurse" class="box nurse">
+    <!--    <div class="ball"><i class="uil uil-trophy"></i> <span id="score-text">ball</span> </div>-->
+        <div class="yonalish">
+            
+            <p>Yo'nalish: Patranajlik ishi</p>
+            <button onclick="startTest()">Testni boshlash</button>
+        </div>
+        <div class="container">
+            <div id="timer">Qolgan vaqt:&nbsp;<span>&nbsp;25s</span></div>
+            <div class="question" id="question">Savol yuklanmoqda...</div>
+            <div class="options" id="options"></div>
+        </div>
+
+        <script>
+
+        const questions = [
+    {
+        question: "Stomatit nima?",
+        options: [
+            "Til ildizining yallig’lanishi",
+            "Og’iz bo’shlig’i shilliq pardasining yallig’lanishi",
+            "Tilning yallig’lashi",
+            "Milkning yallig’lanishi"
+        ],
+        answer: 1
+    },
+    {
+        question: "Dezinfektsiya turlariga qaysilar kiradi?",
+        options: [
+            "kimyoviy, biologik, texnik",
+            "profilaktik va o’choqli",
+            "fizikaviy, kimyoviy, biologik",
+            "mexanik, fizik, ijtimoiy"
+        ],
+        answer: 1
+    },
+    {
+        question: "Limfa tugunlari qaysi tekshirish orqali aniqlanadi?",
+        options: [
+            "perkussiya, auskultatsiya",
+            "perkussiya, palpatsiya",
+            "palpatsiya, auskultatsiya",
+            "palpatsiya, umumiy ko’rik"
+        ],
+        answer: 3
+    },
+    {
+        question: "Patronaj hamshiralari qaysi guruhdagi bemorlar bilan ishlaydi?",
+        options: [
+            "Faqat chaqaloqlar bilan",
+            "Faqat homilador ayollar bilan",
+            "Ilk yoshdagi bolalar, homilador va tuqqan ayollar bilan",
+            "Faqat keksa odamlar bilan"
+        ],
+        answer: 2
+    },
+    {
+        question: "OIV qo’zg’atuvchisi nima?",
+        options: [
+            "Pilovirus",
+            "Bakteriya",
+            "DNK saqlovchi virus",
+            "Retrovirus"
+        ],
+        answer: 3
+    },
+    {
+        question: "Bemorning holatini patronaj hamshirasi qanday baholaydi?",
+        options: [
+            "Aktiv, passiv, majburiy",
+            "Yaxshi, yomon",
+            "Passiv, majburiy",
+            "Aktiv, passiv"
+        ],
+        answer: 0
+    },
+    {
+        question: "Patronaj hamshirasining vazifasi nima?",
+        options: [
+            "Aholini sog’lomlashtirish",
+            "Aholiga ijtimoiy yordam berish",
+            "Emlash ishlarini olib borish",
+            "Poliklinikada ish faoliyatini olib borish"
+        ],
+        answer: 0
+    },
+    {
+        question: "Muloqot samarali bo’lishi uchun nechta element muhim?",
+        options: [
+            "5ta",
+            "3ta",
+            "4ta",
+            "2ta"
+        ],
+        answer: 2
+    },
+    {
+        question: "OIV infektsiyasining yuqish mexanizmi qaysi?",
+        options: [
+            "Jinsiy, transmessiv, havo tomchi",
+            "Parenteral, vertikal, gorizontal",
+            "Jinsiy, parenteral, vertikal",
+            "Hashoratlar chaqqanda, iflos qo’llar orqali, kontakt yo’l bilan"
+        ],
+        answer: 2
+    },
+    {
+        question: "Sog’lom turmush tarzi – bu nima?",
+        options: [
+            "Salomatlikni saqlash va mustahkamlashga qaratilgan inson xatti-harakatlarining individual tizimi",
+            "Jismoniy tizimli mashqlarni bajarish",
+            "Insonning salomatlik haqidagi bilimlaridan tashkil topgan dunyoqarashi",
+            "Insonning ruxiy salomatligi haqidagi bilimlaridan tashkil topgan dunyoqarashi"
+        ],
+        answer: 0
+    },
+    {
+        question: "Patronaj hamshirasi o’zining qanday ko’nikmalarini oshirib borishi kerak?",
+        options: [
+            "Amaliy",
+            "Nazariy",
+            "Maorifiy",
+            "Ta’limiy"
+        ],
+        answer: 0
+    },
+    {
+        question: "Tana haroratini o’lchash joylari qaysi?",
+        options: [
+            "Og’iz bo’shlig’i, qo’ltiq osti, to’g’ri ichak",
+            "Qo’ltiq osti, to’g’ri ichak, tirsak bo’shlig’i",
+            "Og’iz bo’shlig’i, qo’ltiq osti, peshonada, tizza bo’shlig’i, to’g’ri ichak",
+            "Og’iz bo’shlig’i, tizza bo’g’imi, quloq ortida"
+        ],
+        answer: 0
+    },
+    {
+        question: "Puls qaysi sohalarda aniqlanadi?",
+        options: [
+            "Chakka, uyqu arteriyasi, bilak sohasi, tizza ko’zi osti",
+            "Ensa sohasidan, qorin va oshqozon sohasida, barmoqda",
+            "Boshning yuqori qismida, peshona sohasida, qovuqda, to’piqda",
+            "Jag ostida, qorin va oshqozon sohasida, tizzada, boldirda"
+        ],
+        answer: 0
+    },
+    {
+        question: "Muloqotning verbal turiga nimalar kiradi?",
+        options: [
+            "Yozma muloqot",
+            "Imo-ishora bilan muloqot",
+            "Og’zaki muloqot",
+            "Ichki shaxsiy muloqot"
+        ],
+        answer: 2
+    },
+    {
+        question: "Tibbiyotda 'profilaktika' nima?",
+        options: [
+            "Kasalliklarni davolash usuli",
+            "Kasalliklarni oldini olish choralari",
+            "Faqat yuqumli kasalliklarga qarshi kurash",
+            "Kasalliklarni kechiktirish"
+        ],
+        answer: 1
+    }
+];
+
+// Qolgan 55 ta savol ham shu formatda davom etadi...
+
+        let currentQuestion = 0;
+        let score = localStorage.getItem("testScore") ? parseInt(localStorage.getItem("testScore")) : 3;
+        let sessionScore = 0; // Har testda yangilanadi    
+        let timeLeft = 25;
+        let timer;
+
+        // Ball divini topamiz    
+        let ballDiv = document.querySelector(".ball span");
+
+        // Saqlangan natijani ko‘rsatamiz    
+        ballDiv.innerText = score;
+
+        function shuffleQuestions() {
+            for (let i = questions.length - 1; i > 0; i--) {
+                let j = Math.floor(Math.random() * (i + 1));
+                [questions[i], questions[j]] = [questions[j], questions[i]];
+            }
+        }
+
+        function startTest() {
+            sessionScore = 0;
+            currentQuestion = 0;
+            shuffleQuestions(); // Har test boshlanganda aralashtiramiz
+            document.querySelector(".container").style.display = "block";
+            document.querySelector("#timer").style.display = "flex";
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            if (currentQuestion >= questions.length) {
+                score += sessionScore; // Umumiy ballga joriy test natijasini qo‘shamiz    
+                localStorage.setItem("testScore", score);
+                document.querySelector(".container").innerHTML = `<h2>Test yakunlandi!</h2>    
+            <p>Joriy test natijangiz: ${sessionScore}/${questions.length}</p>    
+            <button onclick="restartTest()">Qayta boshlash</button>`;
+                ballDiv.innerText = score; // Umumiy ballni yangilash    
+                return;
+            }
+
+            document.getElementById("question").innerText = questions[currentQuestion].question;
+            document.getElementById("options").innerHTML = "";
+
+            questions[currentQuestion].options.forEach((option, index) => {
+                let button = document.createElement("button");
+                button.innerText = option;
+                button.onclick = function() {
+                    checkAnswer(index);
+                };
+                document.getElementById("options").appendChild(button);
+            });
+
+            timeLeft = 25;
+            document.querySelector("#timer span").innerText = `${timeLeft}s`;
+
+            clearInterval(timer);
+            timer = setInterval(() => {
+                timeLeft--;
+                document.querySelector("#timer span").innerText = `${timeLeft}s`;
+                if (timeLeft === 0) {
+                    clearInterval(timer);
+                    nextQuestion();
+                }
+            }, 1000);
+        }
+
+        function checkAnswer(index) {
+            clearInterval(timer);
+            if (index === questions[currentQuestion].answer) {
+                sessionScore++; // Joriy test natijasini oshiramiz    
+            }
+            nextQuestion();
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            loadQuestion();
+        }
+
+        function restartTest() {
+            document.querySelector(".container").innerHTML = `    
+        <div id="timer">Qolgan vaqt:&nbsp;<span>&nbsp;25s</span></div>    
+        <div class="question" id="question">Savol yuklanmoqda...</div>    
+        <div class="options" id="options"></div>    
+    `;
+            startTest();
+        }
+
+    </script>
+</body>
+
+</html>
