@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIN tekshirish</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: #f4f4f4;
+        }
+        .error {
+            display: none;
+            background-color: pink;
+            color: red;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        #pin-form {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            margin: auto;
+        }
+        h2 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        #pin-input {
+            width: 80%;
+            padding: 10px;
+            font-size: 18px;
+            text-align: center;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+            transition: 0.3s;
+        }
+        #pin-input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="pin-form">
+        <h2>PIN kodni kiriting</h2>
+        <input type="password" id="pin-input" maxlength="12">
+        <button onclick="checkPin()">Kirish</button>
+        <div id="error" class="error">Xato! PIN kod noto‘g‘ri</div>
+    </div>
+
+    <script>
+        const doctorPins = [
+            "Dr@8932!", "M3d1C@l#", "XyZ!5432", "MediC^12", "SurG3on9$",
+            "T@rG@t10", "Doc$5g87", "M3dic*al8", "Rx_7823%", "C!l!n!c24"
+        ];
+
+        const nursePins = [
+            "Nur$E@98", "P@t!3nt5#", "Car3G1vEr!", "H3lpD3sk$", "Nrs_1234*",
+            "Tr3atm#nt1", "H@ndy@id!", "MedN!cs@", "RxNurs%78", "H03pCare!"
+        ];
+
+        // Saqlangan PIN kodni tekshirish va sahifaga o'tkazish
+        function redirectIfLoggedIn() {
+            let savedPin = localStorage.getItem("userPin");
+
+            if (savedPin) {
+                if (doctorPins.includes(savedPin)) {
+                    window.location.href = "https://raw.githack.com/testdoctorUz/TestDoctor/dd83101a86b830a55e8f1bf38f4969b89c641f41/Umumiy_shifokorlar.html";
+                } else if (nursePins.includes(savedPin)) {
+                    window.location.href = "https://raw.githack.com/testdoctorUz/TestDoctor/6168a40101f43b454dfd8cd7e27f80b97994e945/Umumiy_hamshira.html";
+                }
+            }
+        }
+
+        // Sahifa ochilganda avto-yo'naltirish
+        redirectIfLoggedIn();
+
+        function checkPin() {
+            let pin = document.getElementById("pin-input").value;
+
+            if (doctorPins.includes(pin)) {
+                localStorage.setItem("userPin", pin);
+                window.location.href = "https://raw.githack.com/testdoctorUz/TestDoctor/dd83101a86b830a55e8f1bf38f4969b89c641f41/Umumiy_shifokorlar.html";
+            } else if (nursePins.includes(pin)) {
+                localStorage.setItem("userPin", pin);
+                window.location.href = "https://raw.githack.com/testdoctorUz/TestDoctor/6168a40101f43b454dfd8cd7e27f80b97994e945/Umumiy_hamshira.html";
+            } else {
+                document.getElementById("error").style.display = "block";
+            }
+        }
+    </script>
+
+</body>
+</html>
