@@ -31,22 +31,15 @@
             left: 0;
             top: 0;
             padding: 15px;
-            //margin-top: 50px;
             width: 100%;
-          //  height: calc(100% + 50px);
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
             opacity: 0;
             pointer-events: none;
             transition: 0.2s ease;
-overflow-y:auto;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
-
-    max-height: 80vh;
-  //  overflow-y: auto;
-
         }
 
         .popup-container.active {
@@ -112,7 +105,6 @@ overflow-y:auto;
         .config-option {
             justify-content: space-between;
             align-items: center;
-            margin-top:50px;
         }
 
         .config-option button {
@@ -347,15 +339,6 @@ overflow-y:auto;
                 font-size: 1.4rem;
             }
         }
-        
-        .start-quiz-btn {
-            margin-bottom: 20px;
-        }
-        
-        .config-option {
-            margin-top: -60px;
-        }
-        
     </style>
 </head>
 
@@ -369,38 +352,22 @@ overflow-y:auto;
                 <h4 class="option-title">Mutaxasisligingizni tanlang</h4>
                 <div class="category-options">
                     <button class="category-option active">Reanimatolog</button>
+                    <button class="category-option">Rentgenolog</button>
+                    <button class="category-option">Dezinfektologiya</button>
+                    <button class="category-option">Bolalar nevrologiyasi</button>
                     <button class="category-option">Otorinolaringolog</button>
                     <button class="category-option" id="pat">Ortoped</button>
-                    <button class="category-option">Akusherlik ishi va Ginekologiya</button>
-                    <button class="category-option">Bolalar kardiologiyasi va revmatologiyasi</button>
-                    <button class="category-option">Bolalar nevrologiyasi</button>
-                    <button class="category-option">Dezinfektologiya</button>
-                    <button class="category-option">Endoskopiya</button>
-                    <button class="category-option">Epidemiologiya</button>
-                    <button class="category-option">Gematologiya</button>
-                    <button class="category-option">Narkologiya</button>
-                    <button class="category-option">Neonatologiya</button>
-                    <button class="category-option">Oilaviy shifokorlik</button>
-                    <button class="category-option">Pediatriya</button>
-                    <button class="category-option">Bolalar Reanimatsiyasi</button>
-                    <button class="category-option">Rentgenologiya</button>
-                    <button class="category-option">Terapevtik Stomatologiya</button>
-                    <button class="category-option">Terapiya</button>
-                    <button class="category-option">Davolash ishi</button>
-                    <button class="category-option">Umumiy Stomatologiya</button>
-                    <button class="category-option">Urologiya</button>
-                    <button class="category-option">Kutilmoqda</button>
 
                 </div>
             </div>
 
             <div class="config-option">
                 <h4 class="option-title">Savollar soni</h4>
-                <div class="question-options">                   
-                    <button class="question-option active">10</button>
+                <div class="question-options">
                     <button class="question-option">15</button>
-                    <button class="question-option">20</button>
-                    <button class="question-option">25</button>
+                    <button class="question-option active">25</button>
+                    <button class="question-option">35</button>
+                    <button class="question-option">45</button>
                     <button class="question-option">50</button>
                 </div>
             </div>
@@ -771,6 +738,1158 @@ overflow-y:auto;
                 ]
             },
 
+
+
+            {
+                category: "Rentgenologiya",
+                questions: [{
+                        question: "Bemor 13 yoshda. Rentgenogrammada diafiz son suyagida markaz uzun maydoncha “matoviy steklo” oʻxshagan, gomogeniksiz, aniq kontur bilan shish suyagi aniqlandi. Xulosa?",
+                        options: [
+                            "Osteoxondroma",
+                            "Anevrizmatik suyagi kistasi",
+                            "Oddiy suyagi kistasi",
+                            "Fibroz displaziyasi"
+                        ],
+                        correctAnswer: 3
+                    },
+
+                    {
+                        question: "Suyak metastazlari qanday belgilar bilan tavsiflanadi?",
+                        options: [
+                            "O‘pka tepa qismlarida joylashishi",
+                            "Yumaloq shakl",
+                            "Pulmoner naqsh zaiflashadi",
+                            "Ildizning limfa tugunlarini chaqirish"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Axalaziya rentgen belgisi qanday ko‘rinadi?",
+                        options: [
+                            "Qopqoq belgisi",
+                            "Mediastinal soyaning kengayishi",
+                            "Devor chiqib kelish",
+                            "Torayish konturlari tekis emas"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "To‘g‘ri proektsiyada yurakning chap konturining yoylarida nima ko‘rinadi?",
+                        options: [
+                            "Ko‘tarilgan aorta",
+                            "O‘pka arteriyasi",
+                            "Qorin aortasi",
+                            "O‘ng qorincha"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Chap qorincha dilatatsiyasi qaysi kasallikda kuzatiladi?",
+                        options: [
+                            "Aorta stenozi",
+                            "Yurak yetishmovchiligi",
+                            "Mitral stenoz",
+                            "Arterial gipertenziya"
+                        ],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "Rentgen trubkasining optik fokusi kamaytirilganda tasvir qanday o‘zgaradi?",
+                        options: [
+                            "Kattalashadi",
+                            "O‘zgarmaydi",
+                            "Kichrayadi",
+                            "Yanada tiniqlashadi"
+                        ],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "Rentgen trubkasi ichida nima bilan to‘ldirilgan?",
+                        options: [
+                            "Havo bilan",
+                            "Krypton bilan",
+                            "Vakuum bilan",
+                            "Vodorod bilan"
+                        ],
+                        correctAnswer: 2
+                    },
+                    {
+                        question: "Son-chanoq bo‘g‘imi to‘g‘ri proyeksiyada rentgen tekshiruvi uchun oyoq panjasi qanday buriladi?",
+                        options: [
+                            "10-12 gradus tashqariga",
+                            "10-12 gradus ichkariga",
+                            "30 gradus ichkariga",
+                            "Rotatsiyalanmaydi"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Raqamli fluorografiya oddiy fluorografiyaga nisbatan qanday ustunliklarga ega?",
+                        options: [
+                            "Tekshiriluvchiga nur yuklanishining kamayishi",
+                            "Fotosurat jarayonining yo‘qligi",
+                            "Hammasi to‘g‘ri",
+                            "Rentgen plyenkaga talabning yo‘qligi"
+                        ],
+                        correctAnswer: 2
+                    },
+                    {
+                        question: "Past kuchaytiruvchi sonini beradigan texnologiya qaysi?",
+                        options: [
+                            "Ekransiz rentgenografiya",
+                            "Rentgenografiya uchun kuchaytiruvchi ekran",
+                            "Rentgenoskopiya uchun ekran",
+                            "Rentgen tasvirini yorug‘lik bilan kuchaytirish"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Ekspozitsion dozalash qaysi o‘lchov birligida o‘lchanadi?",
+                        options: [
+                            "Rentgen",
+                            "Ber",
+                            "Rad",
+                            "Zivert"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Fokus masofa oshirilganda ob'ektning nurlanish intensivligi qanday o‘zgaradi?",
+                        options: [
+                            "O‘zgarmaydi",
+                            "4-marta kuchayadi",
+                            "50% ga kuchayadi",
+                            "2-marta kattalashadi"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Surunkali nur kasalligini keltirib chiqaradigan eng kichik doza qancha?",
+                        options: [
+                            "0.1 grey",
+                            "0.5 grey",
+                            "1 grey",
+                            "1.5 grey"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "O‘pka venoz dimlanish belgisi qaysi?",
+                        options: [
+                            "Plevral sinusda suyuqlik",
+                            "Ildizlar nogomogen kengaygan",
+                            "O‘pka surati faqat periferiyada kuchaygan",
+                            "Hammasi to‘g‘ri"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Qizilo‘ngach raki uchun asosiy rentgen belgilar qaysilar?",
+                        options: [
+                            "Yallig‘lanish belgilari",
+                            "Tokcha simptomi",
+                            "Peristaltikaning kuchayishi",
+                            "Tutilish defekti simptomi"
+                        ],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "Suyak sinishi rentgen belgisi qanday?",
+                        options: [
+                            "Deformatsiya suyaklari",
+                            "Bir suyak konturida sinish chizig‘i",
+                            "Kortikal qatlamni ajratish",
+                            "Sinish chizig‘ining mavjudligi"
+                        ],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "Atelektaz rentgenologik belgilaridan biri nima?",
+                        options: [
+                            "Markaziy rakning asorati bo‘lishi mumkin",
+                            "Qovurg‘alararo masofa zararlangan tomonda kengayishi",
+                            "Xalqasimon soya",
+                            "Diafragmaning pastga siljishi"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Bexterev kasalligi eng ko‘p kimlarda uchraydi?",
+                        options: [
+                            "Ayollar 20-35 yosh",
+                            "Erkaklar 15-35 yosh",
+                            "Ayollar 60-70 yosh",
+                            "Erkaklar 50-70 yosh"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Oshqozon yara-saratoni qanday ko‘rinadi?",
+                        options: [
+                            "Yassi",
+                            "Uchqavatli",
+                            "Chuqur",
+                            "Divertikulsimon"
+                        ],
+                        correctAnswer: 2
+                    },
+                    {
+                        question: "Bemor 40 yoshda. Rentgenogrammada oʻng oʻpkada atelektaz aniqlandi. Xulosa?",
+                        options: [
+                            "Bronxial atreziyasi",
+                            "Tuberkuloma",
+                            "Abssess",
+                            "Bronx adenomasi"
+                        ],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "Oʻng oʻpka yuqori boʻlagida nechta segment bor?",
+                        options: [
+                            "3",
+                            "4",
+                            "5",
+                            "6"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Rentgen trubkasining optik fokusi kamaytirilganda tasvir qanday oʻzgaradi?",
+                        options: [
+                            "Kattalashadi",
+                            "Oʻzgarmaydi",
+                            "Kichrayadi",
+                            "Yanada tiniqlashadi"
+                        ],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "Buyrak aplaziyasini aniq tashxislash uchun eng ishonchli tekshiruv qaysi?",
+                        options: [
+                            "Rentgenografiya",
+                            "Ekskretor urografiya",
+                            "Ultratovush tekshiruvi",
+                            "Arteriografiya"
+                        ],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "Tuberkulomaga xos belgilar?",
+                        options: [
+                            "Oʻpka ildizlarini muhr",
+                            "Mediastinumning siljishi",
+                            "Nogomogen soya",
+                            "Soyalar va taram-taram bir jinsliligi"
+                        ],
+                        correctAnswer: 2
+                    },
+                    {
+                        question: "Oʻpka abssessining salbiy natijalari?",
+                        options: [
+                            "Plevra boʻshligʻiga uzilish",
+                            "Surunkali abssess",
+                            "Oʻpka parenximasida yalligʻlanish oʻzgarishining oshishi",
+                            "Barcha javoblar toʻgʻri"
+                        ],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "Spondilit hamda pay belgilari?",
+                        options: [
+                            "Faset boʻgʻimlari orasidagi torayish",
+                            "Paylar kaltsinatsiyasi",
+                            "Umurtqa yopish plitalarini yopish",
+                            "Umurtqa balandligini kamaytirish"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Oʻpka metastazlarining xarakteri?",
+                        options: [
+                            "Ildiz limfa tugunlarining kalsiylanishi",
+                            "Fokus oʻlchami 3-4 mm",
+                            "Oʻpka chizmasi oʻzgartirilmaydi",
+                            "Pastki oʻpkada afzal joylashadi"
+                        ],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "Yurak va qon tomirlarining qaysi kasalliklarida Aorta konfiguratsiyasi boʻlmaydi?",
+                        options: [
+                            "Aorta yetishmovchiligi",
+                            "Ateroskleroz",
+                            "Gipertenziv kasallik",
+                            "Perikardit"
+                        ],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "Traxeyaning bifurkatsiya burchagi qaysi strukturaning oʻzgarishi natijasida ortadi?",
+                        options: [
+                            "Chap boʻlmacha",
+                            "Oʻng boʻlmacha",
+                            "Chap qorincha",
+                            "Oʻng qorincha"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Halqa shaklidagi soya sindromining sababi silning qaysi shakliga xos?",
+                        options: [
+                            "Infiltrativ sil kasalligi",
+                            "Miliar sil",
+                            "Kavernoz sil",
+                            "Tuberkuloma"
+                        ],
+                        correctAnswer: 2
+                    },
+                    {
+                        question: "Yoʻgʻon ichak saratoni eng koʻp qayerda uchraydi?",
+                        options: [
+                            "Toʻgʻri ichak",
+                            "Splenik burchak",
+                            "Jigar burchagi",
+                            "Caecum"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Qovuq divertikul turlari?",
+                        options: [
+                            "Soxta",
+                            "Toʻgʻri javob yoʻq",
+                            "Haqiqiy",
+                            "Barcha javoblar toʻgʻri"
+                        ],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "Kattalarda oʻpka ildizlari qanday joylashgan?",
+                        options: [
+                            "Medial zonasi 5-6 interkostal oraliq",
+                            "2-4 interkostal oraliq orasidagi oʻrta",
+                            "Zona 2-4 interkostal makon lateral",
+                            "Maydoni medial zonasi 2-4 qovurgʻalararo oraliq"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Ekssudativ plevrit xos xususiyatlari?",
+                        options: [
+                            "Taʼsirlangan tomonda interkostal masofa kamayadi",
+                            "Bir hil va bir hil boʻlmasligi mumkin",
+                            "Diafragmaning yuqoriga koʻchishi",
+                            "Bir hil shakl"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Tizimli osteoporoz qaysi suyaklarda kuzatiladi?",
+                        options: [
+                            "Bosh suyagi",
+                            "Qisqa suyaklar",
+                            "Pastki ekstremitalarning uzun suyaklari",
+                            "Umurtqa pogʻonasi"
+                        ],
+                        correctAnswer: 3
+                    }
+                ]
+            },
+
+            {
+                category: "Dezinfektologiya",
+                questions: [{
+                        question: "Azopiramik okkultiv qon testi ijobiy natija beradi?",
+                        options: [
+                            "Yashil",
+                            "Pushti",
+                            "Qizil",
+                            "Binafsha (ko'k-binafsha)"
+                        ],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "Profilaktik dezinfeksiya qachon o‘tkaziladi?",
+                        options: [
+                            "Tibbiy xodimlar tomonidan yuqumli kasalliklar markazida bemorning yotoqxonasida",
+                            "Bemor kasalxonaga yotqizilganidan yoki chiqarilgandan keyin dezinfeksiya xizmati",
+                            "Sog'liqni saqlash muassasalarida yuqumli kasalliklarning oldini olish",
+                            "Yuqumli kasallikning joyida"
+                        ],
+                        correctAnswer: 2
+                    },
+                    {
+                        question: "Sterilizatorlar qurilmalarini kuzatish orqali sterilizatsiya sifatini baholash qaysi nazorat turi hisoblanadi?",
+                        options: [
+                            "Kimyoviy",
+                            "Jismoniy",
+                            "Biologik",
+                            "Mexanik"
+                        ],
+                        correctAnswer: 2
+                    },
+                    {
+                        question: "Mexanik usulda dezinfektsiyadan foydalaniladi?",
+                        options: [
+                            "UV, ultratovush",
+                            "Yuvish, havoga chiqarish",
+                            "Dezinfektsiyalash vositalari bilan sug‘orish",
+                            "Bosimli bug‘"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Biosidlar nima?",
+                        options: [
+                            "Bakteriyalarni yo'q qilish uchun vositalar",
+                            "Qo'ziqorinlarni yo'q qilish uchun vositalar",
+                            "Hasharotlar va boshqa zararkunandalarni yo'q qilish uchun vositalar",
+                            "Virus qotillari"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Nafas olish yo‘llari infektsiyalari bo‘limida dezinfeksiyaning bakteriologik sifatini nazorat qilish qaysi bakteriyani aniqlash orqali amalga oshiriladi?",
+                        options: [
+                            "Streptokokklar",
+                            "Escherichia coli",
+                            "Pseudomonas aeruginosa",
+                            "Staphylococcus aureus"
+                        ],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "Aholi punktlarida qaysi moddadan dezinfeksiya qilish uchun foydalanmaslik kerak?",
+                        options: [
+                            "Xloramin",
+                            "Fenol",
+                            "Sirt faol moddalar",
+                            "Vodorod peroksid"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Sirtlarni dezinfektsiyalash uchun qaysi guruh dezinfektsiyalash vositalari tavsiya etiladi?",
+                        options: [
+                            "Aldegidlar",
+                            "Fenollar",
+                            "Kislotalar",
+                            "To‘rtlamchi ammoniy birikmalari"
+                        ],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "Qayta foydalanish mumkin bo'lgan tibbiy asboblar qanday ketma-ket jarayonlarga bo‘ysunadi?",
+                        options: [
+                            "Sterilizatsiya, dezinfeksiya, mikroorganizmlar tomonidan ikkilamchi ifloslanishni istisno qiladigan sharoitlarda saqlash",
+                            "Dezinfeksiya, sterilizatsiya oldidan tozalash, sterilizatsiya, keyingi saqlash",
+                            "Mikroorganizmlar tomonidan ikkilamchi ifloslanishni istisno qiladigan sharoitlarda dezinfektsiyalash, keyinchalik saqlash",
+                            "Sterilizatsiya oldidan tozalash, sterilizatsiya qilish, keyinchalik mikroorganizmlar tomonidan ikkilamchi ifloslanishni istisno qiladigan sharoitlarda saqlash"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Steril mahsulotlarning qadoqlanmagan aseptik sharoitda saqlash muddati qancha?",
+                        options: [
+                            "3 kecha",
+                            "6 soat",
+                            "20 kun",
+                            "10 soat"
+                        ],
+                        correctAnswer: 1
+                    },
+
+                    {
+                        question: "Mikroorganizmlarning to‘liq nobud bo‘lishi qanday ataladi?",
+                        options: [
+                            "Dezinfeksiya",
+                            "Dezinseksiya",
+                            "Sterilizatsiya",
+                            "Deratizatsiya"
+                        ],
+                        correctAnswer: 2
+                    },
+                    {
+                        question: "Qaysi dezinfeksiya usuli eng samarali hisoblanadi?",
+                        options: [
+                            "Kimyoviy usul - xlor eritmasi",
+                            "Jismoniy usul - ultrabinafsha nurlanish",
+                            "Bug‘ sterilizatsiyasi",
+                            "Barcha javoblar to‘g‘ri"
+                        ],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "Steril materialni olish uchun steril forseps qayerda saqlanishi kerak?",
+                        options: [
+                            "1% xloramin eritmasida",
+                            "3% vodorod periks eritmasida",
+                            "Gigasept eritmasida",
+                            "Steril stakanda quritilgan holda"
+                        ],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "Qon qoldiqlari uchun sterilizatsiya oldidan tozalash sifatini qanday test bilan aniqlash mumkin?",
+                        options: [
+                            "Azopiramik test",
+                            "Fenolftalein testi",
+                            "Sudan testi",
+                            "Benzidin testi"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Deratizatsiya qanday maqsadga qaratilgan?",
+                        options: [
+                            "Viruslarni yo‘q qilish",
+                            "Kemiruvchilarni yo‘q qilish",
+                            "Bakteriyalarni yo‘q qilish",
+                            "O‘simlik zararlarini bartaraf etish"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Sterilizatsiya qilingan tibbiy asboblar qancha vaqt steril saqlanishi mumkin?",
+                        options: [
+                            "3 kun",
+                            "6 oy",
+                            "12 oy",
+                            "24 oy"
+                        ],
+                        correctAnswer: 2
+                    },
+                    {
+                        question: "Dezinfeksiyaning qanday turi mavjud?",
+                        options: [
+                            "Joriy va yakuniy",
+                            "Mikrobiologik va kimyoviy",
+                            "Fizik va biologik",
+                            "Mexanik va radiatsion"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Bemorning qoni bilan aloqa qilgan tibbiy asboblar qanday ishlovdan o‘tadi?",
+                        options: [
+                            "Faqat sterilizatsiya qilinadi",
+                            "Dezinfeksiya qilinadi, sterilizatsiya oldidan tozalanadi, sterilizatsiya qilinadi",
+                            "Faqat yuviladi",
+                            "Foydalanishdan keyin tashlab yuboriladi"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Infektsiya tarqalishining oldini olish uchun qaysi profilaktika choralari ko‘riladi?",
+                        options: [
+                            "Emlash",
+                            "Dezinfeksiya",
+                            "Izolyatsiya",
+                            "Barcha javoblar to‘g‘ri"
+                        ],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "Tibbiyot muassasalarida virusli gepatit B ning asosiy yuqish yo‘li qanday?",
+                        options: [
+                            "Havoda tarqalish",
+                            "Parenteral yo‘l",
+                            "Uy-ro‘zg‘or orqali",
+                            "Ovqat orqali"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Bakteriyalarni yo‘q qilish uchun qaysi vosita ishlatiladi?",
+                        options: [
+                            "Bakteritsid vositalar",
+                            "Fungitsid vositalar",
+                            "Virusid vositalar",
+                            "Dezinseksiya vositalari"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Bemorlar yotgan joylarda yuzalarni dezinfeksiya qilish uchun odatda qaysi eritma ishlatiladi?",
+                        options: [
+                            "1% xlor eritmasi",
+                            "0.5% yod eritmasi",
+                            "2% spirt eritmasi",
+                            "5% vodorod periks"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Hasharotlarni yo‘q qilishga qaratilgan dezinfektsiya usuli nima deb ataladi?",
+                        options: [
+                            "Deratizatsiya",
+                            "Dezinseksiya",
+                            "Dezinfeksiya",
+                            "Sterilizatsiya"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Profilaktik dezinfeksiya nima maqsadda amalga oshiriladi?",
+                        options: [
+                            "Bemorni kasalxonadan chiqqandan keyin dezinfeksiya qilish",
+                            "Infeksiya tarqalishini oldini olish",
+                            "Faqat yuqumli kasallik tarqalgan joyda amalga oshiriladi",
+                            "Faqat operatsiya xonalarida bajariladi"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Yuqumli kasalliklar qo‘zg‘atuvchilarining artropod tashuvchilarini yo‘q qilish qanday ataladi?",
+                        options: [
+                            "Dezinseksiya",
+                            "Deratizatsiya",
+                            "Dezinfeksiya",
+                            "Sterilizatsiya"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Xona yuzalarini dezinfeksiya qilishdan oldin qanday chora ko‘rilishi kerak?",
+                        options: [
+                            "Xonani tozalash",
+                            "Potensial infektsiya manbalarini aniqlash",
+                            "Dezinfeksiya qilinadigan sirt turlarini aniqlash",
+                            "Yuqoridagi barcha variantlar to‘g‘ri"
+                        ],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "Bemor bilan aloqa qilgan tibbiy asboblar qanday ishlovdan o‘tadi?",
+                        options: [
+                            "Faqat dezinfeksiya qilinadi",
+                            "Sterilizatsiya oldidan tozalanadi, dezinfeksiya qilinadi, sterilizatsiya qilinadi",
+                            "Foydalanishdan keyin tashlab yuboriladi",
+                            "Faqat qaynatiladi"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Mikrob va viruslarning to‘liq nobud bo‘lishi qanday ataladi?",
+                        options: [
+                            "Sterilizatsiya",
+                            "Dezinfeksiya",
+                            "Antiseptika",
+                            "Dezinseksiya"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Sterilizatsiya qanday jarayonlarni o‘z ichiga oladi?",
+                        options: [
+                            "Barcha mikroorganizmlar barcha shakllarda ishlov berilgan ob'ektlarda yo‘q qilinadi",
+                            "Faqat mikroorganizmlarning vegetativ shakllari ishlov berilgan ob'ektlarda yo‘q qilinadi",
+                            "Atrof-muhitdagi yuqumli kasalliklarning barcha patogenlari yo‘q qilinadi",
+                            "Davolash qilingan ob'ektlarda faqat patogen mikroorganizmlar yo‘q qilinadi"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Ishlatilgan bir martalik tibbiy asboblar qanday yo‘q qilinishi kerak?",
+                        options: [
+                            "Maishiy chiqindilar bilan birga utilizatsiya qilinadi",
+                            "Dezinfeksiya qilinadi va keyin tibbiy chiqindi sifatida utilizatsiya qilinadi",
+                            "Qaynatib olinadi va axlat qutisiga tashlanadi",
+                            "Avtoklavda sterilizatsiya qilinadi, keyin maishiy chiqindilar bilan birga utilizatsiya qilinadi"
+                        ],
+                        correctAnswer: 1
+                    }
+                ]
+            },
+
+
+            {
+                category: "Bolalar nevrologiyasi",
+                questions: [{
+                        question: "Ikki tomonlama ekzoftalm nimaning belgisi?",
+                        options: [
+                            "Tireotrop gormonining giperproduksiyasi",
+                            "Kraniofaringiomaning oldinga va yuqoriga o‘sishi",
+                            "Bo‘yin jarohati",
+                            "Tireotrop gormonning gipoproduksiyasi"
+                        ],
+                        correctAnswer: 0
+                    },
+
+                    {
+                        question: "Bolalarda meningitning eng ko‘p uchraydigan sababi nima?",
+                        options: [
+                            "Bakterial infektsiya",
+                            "Virusli infektsiya",
+                            "Autoimmun kasallik",
+                            "Genetik mutatsiyalar"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Bosh miya shikastlanishidan keyin hushdan ketish davomiyligi 30 daqiqadan ortiq bo‘lsa, bu qanday og‘irlik darajasiga kiradi?",
+                        options: [
+                            "Yengil shikastlanish",
+                            "O‘rta darajadagi shikastlanish",
+                            "Og‘ir shikastlanish",
+                            "O‘ta og‘ir shikastlanish"
+                        ],
+                        correctAnswer: 2
+                    },
+                    {
+                        question: "Bolalarda distoniya qanday namoyon bo‘ladi?",
+                        options: [
+                            "Mushaklarning haddan tashqari zaifligi",
+                            "Nazorat qilinmaydigan mushak spazmlari va harakatlar",
+                            "Tana haroratining tushishi",
+                            "Sezgi buzilishi"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Qaysi genetik kasallikda katta yoshga kelganda progressiv miopatiya kuzatiladi?",
+                        options: [
+                            "Duchenne mushak distrofiyasi",
+                            "Angelman sindromi",
+                            "Fragil X sindromi",
+                            "Tourette sindromi"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Qaysi sindrom bolalarda tik harakatlari va vokal tikelar bilan namoyon bo‘ladi?",
+                        options: [
+                            "Down sindromi",
+                            "Tourette sindromi",
+                            "Rett sindromi",
+                            "Williams sindromi"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Bolalarda serebral falajning eng keng tarqalgan shakli qaysi?",
+                        options: [
+                            "Spastik diplegiya",
+                            "Atetoid shakl",
+                            "Ataksik shakl",
+                            "Gipotonik shakl"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Bolalarda qaysi vitamin yetishmovchiligi epileptik tutqanoqlarga olib kelishi mumkin?",
+                        options: [
+                            "Vitamin A",
+                            "Vitamin D",
+                            "Vitamin E",
+                            "Vitamin B6"
+                        ],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "Qaysi sindromda bola qo‘llarini doimiy ravishda og‘ziga olib boradi va regress kuzatiladi?",
+                        options: [
+                            "Prader-Villi sindromi",
+                            "Angelman sindromi",
+                            "Rett sindromi",
+                            "Fragil X sindromi"
+                        ],
+                        correctAnswer: 2
+                    },
+                    {
+                        question: "Nevrofibromatoz qanday xususiyatga ega?",
+                        options: [
+                            "Barcha asab tolalarining degeneratsiyasi",
+                            "Tana yuzasida 'qahva-sut' dog‘lari va asab tizimi o‘smasi",
+                            "Bo‘yin mushaklarining haddan tashqari kuchayishi",
+                            "Yuz nervi falaji bilan kechadi"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Bolalarda qaysi sindromda mushak gipotoniyasi va katta tili bo‘lishi mumkin?",
+                        options: [
+                            "Down sindromi",
+                            "Angelman sindromi",
+                            "Prader-Villi sindromi",
+                            "Duchenne mushak distrofiyasi"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Bolalar epilepsiyasining qaysi shakli uyqu bilan bog‘liq?",
+                        options: [
+                            "Rolandik epilepsiya",
+                            "Lennox-Gastaut sindromi",
+                            "Jeneralizatsiyalangan tonik-klonik tutqanoq",
+                            "Mioklonik epilepsiya"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Bolalarda qaysi kasallik vegetativ distoniya bilan bog‘liq bo‘lishi mumkin?",
+                        options: [
+                            "Serebral falaj",
+                            "Vegetativ-qon tomir distoniyasi",
+                            "Duchenne mushak distrofiyasi",
+                            "Angelman sindromi"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Qaysi simptom ataksiya uchun xos?",
+                        options: [
+                            "Ko‘rish buzilishi",
+                            "Harakatlarning muvozanatsizligi va koordinatsiyasizligi",
+                            "Sezgi buzilishi",
+                            "Epileptik tutqanoqlar"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Miopatiyalarga qaysi xususiyat xos?",
+                        options: [
+                            "Mushaklarning progressiv zaiflashishi",
+                            "Tana haroratining ko‘tarilishi",
+                            "Vegetativ-qon tomir distoniyasi",
+                            "Haddan tashqari harakatlar"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Bolalarda orqa miya shikastlanishining eng keng tarqalgan sababi nima?",
+                        options: [
+                            "Tug‘ruq jarohati",
+                            "Infektsiya",
+                            "Genetik mutatsiyalar",
+                            "Avtoimmun kasalliklar"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Ko‘ruv nervi atrofiyasining eng keng tarqalgan sababi nima?",
+                        options: [
+                            "Yallig‘lanish",
+                            "Genetik omillar",
+                            "Bosimning ortishi",
+                            "Ishemik insult"
+                        ],
+                        correctAnswer: 2
+                    },
+                    {
+                        question: "Bolalarda surunkali charchoq sindromining sababi nima?",
+                        options: [
+                            "Virusli infektsiyalar",
+                            "Gipovitaminoz",
+                            "Psixologik stress",
+                            "Barchasi to‘g‘ri"
+                        ],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "Qaysi sindrom bola yoshi ulg‘aygani sari progressiv kognitiv buzilishlarga olib keladi?",
+                        options: [
+                            "Angelman sindromi",
+                            "Fragil X sindromi",
+                            "Lennox-Gastaut sindromi",
+                            "Rett sindromi"
+                        ],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "O‘tkir dissimenirovanniy ensefalomiyelit qaysi sababga ko‘ra yuzaga keladi?",
+                        options: [
+                            "Virusli infektsiyalardan keyin",
+                            "Tug‘ma mutatsiyalar natijasida",
+                            "Genetik omillar",
+                            "Travmatik bosh miya jarohatlari natijasida"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Qaysi nevrologik kasallik bolalikda eng ko‘p uchraydi?",
+                        options: [
+                            "Epilepsiya",
+                            "Migren",
+                            "Parkinson kasalligi",
+                            "Altsgeymer kasalligi"
+                        ],
+                        correctAnswer: 0
+                    },
+
+                    {
+                        question: "Bolalarda qaysi yoshda fiziologik reflekslar yo‘qoladi?",
+                        options: [
+                            "3-4 oy",
+                            "6-7 oy",
+                            "1-2 yosh",
+                            "3-4 yosh"
+                        ],
+                        correctAnswer: 2
+                    },
+                    {
+                        question: "Nevropatiyalarda qaysi belgi kuzatiladi?",
+                        options: [
+                            "Gipertonus",
+                            "Hipotonus",
+                            "Giperkineziya",
+                            "Spastik falaj"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Qaysi genetik kasallikda mushaklarning progressiv zaiflashishi kuzatiladi?",
+                        options: [
+                            "Duchenne mushak distrofiyasi",
+                            "Rey sindromi",
+                            "Vesta sindromi",
+                            "Viskott-Oldrich sindromi"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Bosh miya orqa bo‘lagi zararlanganda qanday simptom kuzatiladi?",
+                        options: [
+                            "Ko‘rish buzilishi",
+                            "Nutq buzilishi",
+                            "Eshitish buzilishi",
+                            "Muvozanat buzilishi"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Bolalarda ensefalitning eng keng tarqalgan sababi nima?",
+                        options: [
+                            "Bakterial infektsiya",
+                            "Virusli infektsiya",
+                            "Autoimmun kasalliklar",
+                            "Genetik omillar"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Qaysi belgilar Menier kasalligiga xos?",
+                        options: [
+                            "Tinnitus, bosh aylanishi, eshitishning pasayishi",
+                            "Ko‘zning yorug‘likka sezgirligi",
+                            "Tana haroratining tushishi",
+                            "Bo‘yin mushaklarining haddan tashqari kuchayishi"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Qaysi kasallik bolalik epilepsiyasining eng keng tarqalgan shakli hisoblanadi?",
+                        options: [
+                            "Vesta sindromi",
+                            "Rolandik epilepsiya",
+                            "Lennoks-Gasto sindromi",
+                            "Temporal epilepsiya"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Bosh miya yarim sharlarining asimmetriyasi qaysi kasallikka xos?",
+                        options: [
+                            "Gidroanensefaliya",
+                            "Polimikrogiriya",
+                            "Arnold-Kiari malformatsiyasi",
+                            "Holoprozensefaliya"
+                        ],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "Bosh miya qaysi sohasining zararlanishida ataksiya kuzatiladi?",
+                        options: [
+                            "Chakka bo‘lagi",
+                            "Peshona bo‘lagi",
+                            "Miyacha",
+                            "Orqa miya"
+                        ],
+                        correctAnswer: 2
+                    },
+                    {
+                        question: "Qaysi vitamin yetishmovchiligi periferik neyropatiyaga olib keladi?",
+                        options: [
+                            "Vitamin A",
+                            "Vitamin B12",
+                            "Vitamin C",
+                            "Vitamin D"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Bolalarda aqliy rivojlanishning buzilishiga qaysi omil sabab bo‘lishi mumkin?",
+                        options: [
+                            "Genetik mutatsiyalar",
+                            "Homila gipoksiyasi",
+                            "Neyroinfektsiyalar",
+                            "Barchasi to‘g‘ri"
+                        ],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "Qaysi sindrom bola tug‘ilganidan keyin birinchi oylarda mushak gipotoniyasi bilan namoyon bo‘ladi?",
+                        options: [
+                            "Angelman sindromi",
+                            "Prader-Villi sindromi",
+                            "Rett sindromi",
+                            "Moyamoya kasalligi"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Bolalarda neyrogen qovuq sindromi qanday namoyon bo‘ladi?",
+                        options: [
+                            "Najas ushlab turish",
+                            "Tez-tez siyish va siydik tuta olmaslik",
+                            "Ich qotishi",
+                            "Ko‘ngil aynish va qayt qilish"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Bo‘yinning orqa simpatik sindromiga xos narsa nima?",
+                        options: [
+                            "Kaftda vegetativ-trofik o‘zgarishlar",
+                            "Arterial bosim asimmetriyasi",
+                            "Yelka bo‘g‘imining barcha harakatlarida og‘riq",
+                            "Chuqur nafas olganda va boshni sog‘lom tomonga qaratganda yelka arteriyasida arterial bosimning pasayishi"
+                        ],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "O‘rta miya tarkibiga kirmaydi:",
+                        options: [
+                            "Qizil yadro",
+                            "G‘altaksimon nerv yadrosi",
+                            "Qora substansiya",
+                            "Uzoqlashtiruvchi nerv yadrosi"
+                        ],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "Miya nuqsonlari rivojlanish etiologiyasi nima?",
+                        options: [
+                            "Monogen",
+                            "Multifaktorli",
+                            "Sporadik",
+                            "Noaniq"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Tug‘ma gidrosefaliya sababi nima?",
+                        options: [
+                            "Likvor sistema shakllanishining buzilishi",
+                            "Likvor yo‘llarida tusiq",
+                            "Surilishning paxion granulyasiyalarida buzilishi",
+                            "Serebrospinal suyuqlik giperproduksiyasi"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Kvekenshtedt musbat sinamasi nimani bildiradi?",
+                        options: [
+                            "Miya qavatlarining yallig‘lanishi",
+                            "Likvorli to‘siq",
+                            "Miya ichi bosimining ortishi",
+                            "Likvorli gipotenziya"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Ko‘ruv trakti zararlanganda qanday gemianopsiya kuzatiladi?",
+                        options: [
+                            "Binazal",
+                            "Pastki kvadrant",
+                            "Gomonim",
+                            "Yuqori kvadrant"
+                        ],
+                        correctAnswer: 2
+                    },
+                    {
+                        question: "Ko‘ruv nervi kesishmasi ichki qismi zararlanganda qanday gemianopsiya kuzatiladi?",
+                        options: [
+                            "Bir tomonlama gomonim gemianopsiya",
+                            "Binazal gemianopsiya",
+                            "Yuqori kvadrat gemianopsiya",
+                            "Bitemporal gemianopsiya"
+                        ],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "Yuz nervi zararlanishiga xos bo‘lmagan belgi qaysi?",
+                        options: [
+                            "Mimik mushaklar falaji",
+                            "Ta’m buzilishi",
+                            "Lagoftalm",
+                            "Ko‘z yorig‘ining torayishi"
+                        ],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "Quyidagi belgilardan qaysi biri bulbar falajga xos emas?",
+                        options: [
+                            "Nafas va yurak faoliyati buzilishi",
+                            "Yutish refleksining pasayishi",
+                            "Disfagiya, dizartriya, disfoniya",
+                            "Oral avtomatizm reflekslari"
+                        ],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "Qaysi zararlanish natijasida psevdobulbar falajlik kelib chiqadi?",
+                        options: [
+                            "Bir tomonlama kortiko-nuklear yo‘llar zararlanganda",
+                            "Ikki tomonlama kortiko-spinal yo‘llar zararlanganda",
+                            "Miya ustuni yadrolari zararlanganda",
+                            "Ikki tomonlama kortiko-nuklear yo‘llar zararlanganda"
+                        ],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "Yurganda majburiy, butun tananing spiralsimon harakatlari bilan kuzatiladigan giperkinez turi nima?",
+                        options: [
+                            "Torsion distoniya",
+                            "Miokloniya",
+                            "Lokallashgan spazm",
+                            "Gemiballizm"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Bemor qo‘l va oyoqlarida 'qo‘lqop' va 'paypoq' ko‘rinishidagi sezgi buzilishlariga shikoyat qiladi. Bu qaysi zararlanishda yuzaga keladi?",
+                        options: [
+                            "Periferik nervlar",
+                            "Miya ustuni",
+                            "Yelka chigali",
+                            "Orqa miya"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Eshituv va yuz nervi nevriti, miyacha simptomatikasi va qarama-qarshi tomonda gemiparez qachon kuzatiladi?",
+                        options: [
+                            "Ko‘prik-miyacha burchagi o‘smalarida",
+                            "Siringobulbiyada",
+                            "Chakka bo‘lagi o‘smalarida",
+                            "Peshona bo‘lagi o‘smalarida"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Miasteniya diagnostikasida qaysi test qo‘llaniladi?",
+                        options: [
+                            "Mushak biopsiyasi",
+                            "Bosh miya KT si",
+                            "Ko‘z tubini tekshirish",
+                            "Prozerin testi"
+                        ],
+                        correctAnswer: 3
+                    }
+                ]
+            },
+
             {
                 category: "Stomatolog",
                 questions: [{
@@ -795,30 +1914,7 @@ overflow-y:auto;
                     }
                 ]
             },
-            {
-                category: "Stomatologiya",
-                questions: [{
-                        question: "Kariesning asosiy sababi nima?",
-                        options: [
-                            "Tishlarning noto‘g‘ri parvarishi",
-                            "Vitamin yetishmovchiligi",
-                            "Bakterial infektsiya",
-                            "Barchasi to‘g‘ri"
-                        ],
-                        correctAnswer: 3
-                    },
-                    {
-                        question: "Tish emalining asosiy tarkibiy qismi nima?",
-                        options: [
-                            "Kaltsiy va fosfor",
-                            "Temir va magniy",
-                            "Vitamin D va B12",
-                            "Oqsillar va yog‘lar"
-                        ],
-                        correctAnswer: 0
-                    }
-                ]
-            },
+
             {
                 category: "Ortoped",
                 questions: [{
@@ -842,235 +1938,235 @@ overflow-y:auto;
                         correctAnswer: 1
                     },
                     {
-        question: "Ortopediya qaysi kasalliklarni o‘rganadi?",
-        options: [
-          "Ichki organ kasalliklarini",
-          "Suyak, bo‘g‘im va mushak tizimi kasalliklarini",
-          "Asab tizimi kasalliklarini",
-          "O‘pka va yurak kasalliklarini"
-        ],
-        correctAnswer: 1
-},
-{
-        question: "Osteoporoz qanday kasallik?",
-        options: [
-          "Suyak zichligining kamayishi va mo‘rtlashishi",
-          "Suyaklarning haddan tashqari qalinlashishi",
-          "Bo‘g‘im yallig‘lanishi",
-          "Qon aylanishining buzilishi"
-        ],
-        correctAnswer: 0
-},
-{
-        question: "Skolioz bu qanday patologiya?",
-        options: [
-          "Orqa miya asabining zararlanishi",
-          "Umurtqaning yon tomonga egriligi",
-          "Bo‘g‘imlarning qattiqlashishi",
-          "Orqa miya diskining shikastlanishi"
-        ],
-        correctAnswer: 1
-},
-{
-        question: "Artrit qanday kasallik?",
-        options: [
-          "Bo‘g‘im yallig‘lanishi",
-          "Suyak zichligining oshishi",
-          "Orqa miya jarohati",
-          "Qon bosimining oshishi"
-        ],
-        correctAnswer: 0
-},
-{
-        question: "Ortopedik protezlar qanday maqsadda qo‘llaniladi?",
-        options: [
-          "Ichki organlarning ishlashini yaxshilash",
-          "Yo‘qotilgan yoki shikastlangan suyak yoki bo‘g‘imlarni almashtirish",
-          "Yurak ritmini boshqarish",
-          "Ko‘zning ko‘rish qobiliyatini tiklash"
-        ],
-        correctAnswer: 1
-},
-{
-        question: "Revmatoid artrit qanday farqlanadi?",
-        options: [
-          "Faqat bitta bo‘g‘imni zararlaydi",
-          "Autoimmun kasallik bo‘lib, bir nechta bo‘g‘imlarni zararlaydi",
-          "Faqat keksa yoshdagilarda uchraydi",
-          "Yurak ritmiga ta’sir qiladi"
-        ],
-        correctAnswer: 1
-},
-{
-        question: "Ortopediya sohasida eng ko‘p qo‘llaniladigan diagnostik usul qaysi?",
-        options: [
-          "EKG",
-          "Rentgen",
-          "Endoskopiya",
-          "MRI"
-        ],
-        correctAnswer: 1
-},
-{
-        question: "Ploskostopiya nima?",
-        options: [
-          "Umurtqa pog‘onasining egriligi",
-          "Yassi tovon sindromi",
-          "Bo‘g‘im ichida suyuqlik to‘planishi",
-          "Orqa miya disk churrasi"
-        ],
-        correctAnswer: 1
-},
-{
-        question: "Ortopedik reabilitatsiyaning asosiy maqsadi nima?",
-        options: [
-          "Ichki organlarni davolash",
-          "Bo‘g‘im va mushaklarning harakatini tiklash",
-          "Yurak kasalliklarini oldini olish",
-          "Suyak zichligini oshirish"
-        ],
-        correctAnswer: 1
-},
-{
-        question: "Gipertenziya qanday kasallik?",
-        options: [
-          "Qon bosimining oshishi",
-          "Suyakning mo‘rtlashishi",
-          "Umurtqa pog‘onasining egriligi",
-          "Mushaklarning zaiflashishi"
-        ],
-        correctAnswer: 0
-},
-{
-        question: "Menisk yirtilishi qaysi bo‘g‘imda yuz beradi?",
-        options: [
-          "Yelka bo‘g‘imi",
-          "Tizza bo‘g‘imi",
-          "Oyoq panjasi",
-          "Bilak bo‘g‘imi"
-        ],
-        correctAnswer: 1
-},
-{
-        question: "Ortopedik davolashda fizioterapiya qanday ahamiyatga ega?",
-        options: [
-          "Mushaklar tonusini oshiradi va og‘riqni kamaytiradi",
-          "Ichki organlarni davolaydi",
-          "Suyaklarni mustahkamlaydi",
-          "Tananing immunitetini oshiradi"
-        ],
-        correctAnswer: 0
-},
-{
-        question: "O‘smirlarda eng ko‘p uchraydigan ortopedik muammo qaysi?",
-        options: [
-          "Skolioz",
-          "Osteoporoz",
-          "Artrit",
-          "Oyoq panjasi jarohati"
-        ],
-        correctAnswer: 0
-},
-{
-        question: "Disk churrasi nima?",
-        options: [
-          "Bo‘g‘im yallig‘lanishi",
-          "Orqa miya diskining siljishi va nervlarni bosishi",
-          "Suyak sinishi",
-          "Qon bosimi pasayishi"
-        ],
-        correctAnswer: 1
-},
-{
-        question: "Umurtqa pog‘onasining qaysi qismi eng ko‘p jarohatlanadi?",
-        options: [
-          "Servikal (bo‘yin) qismi",
-          "Torakal (ko‘krak) qismi",
-          "Lumbal (bel) qismi",
-          "Sakral qismi"
-        ],
-        correctAnswer: 2
-},
-{
-        question: "Tizza bo‘g‘imi jarohatlarida eng ko‘p zararlanuvchi tuzilma qaysi?",
-        options: [
-          "Menisk",
-          "Klavikula",
-          "Yelka mushaklari",
-          "Orqa miya nervlari"
-        ],
-        correctAnswer: 0
-},
-{
-        question: "Qaysi holatda ortopedik korrektorlar tavsiya etiladi?",
-        options: [
-          "Skolioz va yassi tovon sindromida",
-          "Faqat artritda",
-          "Faqat osteoporozda",
-          "Faqat bo‘g‘im shikastlanishida"
-        ],
-        correctAnswer: 0
-},
-{
-        question: "Ortopediya qaysi yosh guruhlarida uchraydigan muammolarni o‘rganadi?",
-        options: [
-          "Faqat bolalar va yoshlarda",
-          "Faqat keksa yoshdagilarda",
-          "Barcha yosh guruhlarida",
-          "Faqat sportchilar orasida"
-        ],
-        correctAnswer: 2
-},
-{
-        question: "Reabilitatsiyada massaj qanday rol o‘ynaydi?",
-        options: [
-          "Suyak zichligini oshiradi",
-          "Mushaklarni bo‘shashtiradi va qon aylanishini yaxshilaydi",
-          "Ichki organlarni davolaydi",
-          "Bo‘g‘imlarning harakatini cheklaydi"
-        ],
-        correctAnswer: 1
-},
-{
-        question: "Tizza bo‘g‘imining artrozi qanday belgilar bilan namoyon bo‘ladi?",
-        options: [
-          "Tizza shishishi, og‘riq va harakatning cheklanishi",
-          "Burun qon ketishi",
-          "Tana haroratining oshishi",
-          "Bosh aylanishi"
-        ],
-        correctAnswer: 0
-},
-{
-        question: "Ortopedik jarrohlikda protezlash qanday maqsadda qilinadi?",
-        options: [
-          "Suyak zichligini oshirish",
-          "Shikastlangan bo‘g‘im yoki suyakni almashtirish",
-          "Ichki organlarni tiklash",
-          "Mushaklarning elastikligini oshirish"
-        ],
-        correctAnswer: 1
-},
-{
-        question: "Yassi tovon sindromining asosiy sababi nima?",
-        options: [
-          "Genetik moyillik va noto‘g‘ri poyabzal kiyish",
-          "Qon bosimining oshishi",
-          "Burun egriligi",
-          "Tomoq infeksiyasi"
-        ],
-        correctAnswer: 0
-},
-{
-        question: "Ortopedik muammolarning oldini olish uchun qanday choralar ko‘riladi?",
-        options: [
-          "To‘g‘ri qomat saqlash va jismoniy faollik",
-          "Faqat dori vositalari qabul qilish",
-          "Ortopedik protez o‘rnatish",
-          "Faqat shifokor tavsiyalariga rioya qilish"
-        ],
-        correctAnswer: 0
-}
+                        question: "Ortopediya qaysi kasalliklarni o‘rganadi?",
+                        options: [
+                            "Ichki organ kasalliklarini",
+                            "Suyak, bo‘g‘im va mushak tizimi kasalliklarini",
+                            "Asab tizimi kasalliklarini",
+                            "O‘pka va yurak kasalliklarini"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Osteoporoz qanday kasallik?",
+                        options: [
+                            "Suyak zichligining kamayishi va mo‘rtlashishi",
+                            "Suyaklarning haddan tashqari qalinlashishi",
+                            "Bo‘g‘im yallig‘lanishi",
+                            "Qon aylanishining buzilishi"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Skolioz bu qanday patologiya?",
+                        options: [
+                            "Orqa miya asabining zararlanishi",
+                            "Umurtqaning yon tomonga egriligi",
+                            "Bo‘g‘imlarning qattiqlashishi",
+                            "Orqa miya diskining shikastlanishi"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Artrit qanday kasallik?",
+                        options: [
+                            "Bo‘g‘im yallig‘lanishi",
+                            "Suyak zichligining oshishi",
+                            "Orqa miya jarohati",
+                            "Qon bosimining oshishi"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Ortopedik protezlar qanday maqsadda qo‘llaniladi?",
+                        options: [
+                            "Ichki organlarning ishlashini yaxshilash",
+                            "Yo‘qotilgan yoki shikastlangan suyak yoki bo‘g‘imlarni almashtirish",
+                            "Yurak ritmini boshqarish",
+                            "Ko‘zning ko‘rish qobiliyatini tiklash"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Revmatoid artrit qanday farqlanadi?",
+                        options: [
+                            "Faqat bitta bo‘g‘imni zararlaydi",
+                            "Autoimmun kasallik bo‘lib, bir nechta bo‘g‘imlarni zararlaydi",
+                            "Faqat keksa yoshdagilarda uchraydi",
+                            "Yurak ritmiga ta’sir qiladi"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Ortopediya sohasida eng ko‘p qo‘llaniladigan diagnostik usul qaysi?",
+                        options: [
+                            "EKG",
+                            "Rentgen",
+                            "Endoskopiya",
+                            "MRI"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Ploskostopiya nima?",
+                        options: [
+                            "Umurtqa pog‘onasining egriligi",
+                            "Yassi tovon sindromi",
+                            "Bo‘g‘im ichida suyuqlik to‘planishi",
+                            "Orqa miya disk churrasi"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Ortopedik reabilitatsiyaning asosiy maqsadi nima?",
+                        options: [
+                            "Ichki organlarni davolash",
+                            "Bo‘g‘im va mushaklarning harakatini tiklash",
+                            "Yurak kasalliklarini oldini olish",
+                            "Suyak zichligini oshirish"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Gipertenziya qanday kasallik?",
+                        options: [
+                            "Qon bosimining oshishi",
+                            "Suyakning mo‘rtlashishi",
+                            "Umurtqa pog‘onasining egriligi",
+                            "Mushaklarning zaiflashishi"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Menisk yirtilishi qaysi bo‘g‘imda yuz beradi?",
+                        options: [
+                            "Yelka bo‘g‘imi",
+                            "Tizza bo‘g‘imi",
+                            "Oyoq panjasi",
+                            "Bilak bo‘g‘imi"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Ortopedik davolashda fizioterapiya qanday ahamiyatga ega?",
+                        options: [
+                            "Mushaklar tonusini oshiradi va og‘riqni kamaytiradi",
+                            "Ichki organlarni davolaydi",
+                            "Suyaklarni mustahkamlaydi",
+                            "Tananing immunitetini oshiradi"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "O‘smirlarda eng ko‘p uchraydigan ortopedik muammo qaysi?",
+                        options: [
+                            "Skolioz",
+                            "Osteoporoz",
+                            "Artrit",
+                            "Oyoq panjasi jarohati"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Disk churrasi nima?",
+                        options: [
+                            "Bo‘g‘im yallig‘lanishi",
+                            "Orqa miya diskining siljishi va nervlarni bosishi",
+                            "Suyak sinishi",
+                            "Qon bosimi pasayishi"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Umurtqa pog‘onasining qaysi qismi eng ko‘p jarohatlanadi?",
+                        options: [
+                            "Servikal (bo‘yin) qismi",
+                            "Torakal (ko‘krak) qismi",
+                            "Lumbal (bel) qismi",
+                            "Sakral qismi"
+                        ],
+                        correctAnswer: 2
+                    },
+                    {
+                        question: "Tizza bo‘g‘imi jarohatlarida eng ko‘p zararlanuvchi tuzilma qaysi?",
+                        options: [
+                            "Menisk",
+                            "Klavikula",
+                            "Yelka mushaklari",
+                            "Orqa miya nervlari"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Qaysi holatda ortopedik korrektorlar tavsiya etiladi?",
+                        options: [
+                            "Skolioz va yassi tovon sindromida",
+                            "Faqat artritda",
+                            "Faqat osteoporozda",
+                            "Faqat bo‘g‘im shikastlanishida"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Ortopediya qaysi yosh guruhlarida uchraydigan muammolarni o‘rganadi?",
+                        options: [
+                            "Faqat bolalar va yoshlarda",
+                            "Faqat keksa yoshdagilarda",
+                            "Barcha yosh guruhlarida",
+                            "Faqat sportchilar orasida"
+                        ],
+                        correctAnswer: 2
+                    },
+                    {
+                        question: "Reabilitatsiyada massaj qanday rol o‘ynaydi?",
+                        options: [
+                            "Suyak zichligini oshiradi",
+                            "Mushaklarni bo‘shashtiradi va qon aylanishini yaxshilaydi",
+                            "Ichki organlarni davolaydi",
+                            "Bo‘g‘imlarning harakatini cheklaydi"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Tizza bo‘g‘imining artrozi qanday belgilar bilan namoyon bo‘ladi?",
+                        options: [
+                            "Tizza shishishi, og‘riq va harakatning cheklanishi",
+                            "Burun qon ketishi",
+                            "Tana haroratining oshishi",
+                            "Bosh aylanishi"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Ortopedik jarrohlikda protezlash qanday maqsadda qilinadi?",
+                        options: [
+                            "Suyak zichligini oshirish",
+                            "Shikastlangan bo‘g‘im yoki suyakni almashtirish",
+                            "Ichki organlarni tiklash",
+                            "Mushaklarning elastikligini oshirish"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Yassi tovon sindromining asosiy sababi nima?",
+                        options: [
+                            "Genetik moyillik va noto‘g‘ri poyabzal kiyish",
+                            "Qon bosimining oshishi",
+                            "Burun egriligi",
+                            "Tomoq infeksiyasi"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Ortopedik muammolarning oldini olish uchun qanday choralar ko‘riladi?",
+                        options: [
+                            "To‘g‘ri qomat saqlash va jismoniy faollik",
+                            "Faqat dori vositalari qabul qilish",
+                            "Ortopedik protez o‘rnatish",
+                            "Faqat shifokor tavsiyalariga rioya qilish"
+                        ],
+                        correctAnswer: 0
+                    }
                 ]
             },
             {
@@ -1337,6 +2433,7 @@ overflow-y:auto;
                     }
                 ]
             }
+
         ];
     </script>
     <script>
