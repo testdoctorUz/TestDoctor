@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Montserrat", sans-serif;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: #5145BA;           
+            background-color: #f4f4f4;
+        }
+
+        .popup-container {
+            position: fixed;
+            left: 0;
+            top: 0;
+            padding: 15px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .popup-container.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .popup-container .quiz-box {
+            position: relative;
+            z-index: 5;
+            opacity: 0;
+            pointer-events: none;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.13);
+            transform: translateY(-50px);
+            transition: all 0.4s ease-out;
+        }
+
+        .popup-container.active .quiz-box {
+            opacity: 1;
+            z-index: 10;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        /* Quiz Configuration Stylings */
+        .config-container {
+            z-index: 10;
+            width: 415px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .config-container .config-title {
+            font-size: 1.31rem;
+        }
+
+        .config-container .config-option {
+            margin-top: 25px;
+        }
+
+        .config-option .option-title {
+            font-weight: 500;
+            font-size: 1.125rem;
+            margin-bottom: 20px;
+        }
+
+        .config-option .category-options {
+            display: grid;
+            gap: 15px;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .config-option .question-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 0 30px;
+            justify-content: center;
+        }
+
+        .config-option {
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .config-option button {
+            padding: 12px;
+            font-size: 0.938rem;
+            color: #000;
+            cursor: pointer;
+            font-weight: 500;
+            border-radius: 6px;
+            background: #fff;
+            border: 1px solid #9B8FFF;
+            transition: 0.3s ease;
+
+        }
+
+        .config-option button.active {
+            color: #5145BA;
+            border-color: #5145BA;
+            background: #dfdafd;
+        }
+
+        .config-option button:hover,
+        .quiz-content .answer-option:hover {
+            background: #dad5fd;
+        }
+
+        .config-option .question-options button {
+            flex: 1 1 10%;
+        }
+
+        .config-container .start-quiz-btn,
+        .quiz-footer .next-question-btn,
+        .result-container .try-again-btn {
+            color: #fff;
+            border: none;
+            font-weight: 500;
+            background: #5145BA;
+            padding: 13px 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 6px;
+            transition: background 0.3s ease;
+        }
+
+        .config-container .start-quiz-btn {
+            margin-top: 30px;
+        }
+
+        .config-container .start-quiz-btn:hover,
+        .quiz-footer .next-question-btn:hover,
+        .result-container .try-again-btn:hover {
+            background: #403795;
+        }
+
+        /* Quiz Container Stylings */
+        .quiz-container {
+            width: 480px;
+        }
+
+        .quiz-container .quiz-header {
+            display: flex;
+            padding: 14px 25px;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.09);
+        }
+
+        .quiz-header .quiz-title {
+            font-size: 1.43rem;
+            font-weight: 700;
+        }
+
+        .quiz-header .quiz-timer {
+            display: flex;
+            width: 70px;
+            color: #fff;
+            gap: 5px;
+            align-items: center;
+            background: #32313C;
+            border-radius: 6px;
+            padding: 7px 9px;
+            font-weight: 600;
+            transition: 0.2s ease;
+        }
+
+        .quiz-header .quiz-timer span {
+            font-size: 1.4rem;
+        }
+
+        .quiz-container .quiz-content {
+            padding: 20px 25px 25px;
+        }
+
+        .quiz-content .question-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .quiz-content .answer-options {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-direction: column;
+        }
+
+        .quiz-content .answer-option {
+            display: flex;
+            cursor: pointer;
+            align-items: center;
+            font-weight: 500;
+            border-radius: 6px;
+            padding: 13px 16px;
+            border: 1px solid #B5ACFF;
+            background: #F3F1FF;
+            justify-content: space-between;
+            transition: 0.3s ease;
+        }
+
+        .quiz-content .answer-option span {
+            display: block;
+            flex-shrink: 0;
+            margin: -4px -3px -4px 12px;
+        }
+
+        .quiz-content .answer-option.correct {
+            border-color: #B7E1C1;
+            background: #D4EDDA;
+            color: #155724;
+        }
+
+        .quiz-content .answer-option.correct span {
+            color: #16AE56;
+        }
+
+        .quiz-content .answer-option.incorrect {
+            border-color: #F4BEC3;
+            background: #F8D7DA;
+            color: #721C24;
+        }
+
+        .quiz-content .answer-option.incorrect span {
+            color: #F23723;
+        }
+
+        .quiz-container .quiz-footer {
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid #C6C6C6;
+        }
+
+        .quiz-footer .question-status {
+            font-weight: 500;
+        }
+
+        .quiz-footer .question-status b {
+            font-weight: 600;
+        }
+
+        .quiz-footer .next-question-btn {
+            display: inline-flex;
+            gap: 5px;
+            align-items: center;
+            padding: 9px 17px;
+        }
+
+        /* Quiz Result Stylings */
+        .result-container {
+            text-align: center;
+            padding: 40px;
+            width: 410px;
+        }
+
+        .result-container .result-img {
+            width: 110px;
+            margin-left: 60px;
+        }
+
+        .result-container .result-title {
+            margin-top: 30px;
+        }
+
+        .result-container .result-message {
+            font-size: 1.125rem;
+            font-weight: 500;
+            margin-top: 15px;
+        }
+
+        .result-container .result-message b {
+            font-weight: 700;
+            color: #5145BA;
+        }
+
+        .result-container .try-again-btn {
+            padding: 12px 20px;
+            margin-top: 30px;
+        }
+
+        /* Media query code for mobile screens */
+        @media (max-width: 624px) {
+
+            .config-container,
+            .quiz-container .quiz-content {
+                padding: 20px;
+            }
+
+            .quiz-content .answer-option {
+                padding: 12px 10px 12px 14px;
+            }
+
+            .config-container .question-options {
+                padding: 0 15px;
+            }
+
+            .quiz-container .quiz-header,
+            .quiz-container .quiz-footer {
+                padding: 13px 20px;
+            }
+
+            .quiz-header .quiz-title,
+            .quiz-content .question-text {
+                font-size: 1.3rem;
+            }
+
+            .result-container {
+                padding: 40px 20px;
+            }
+
+            .result-container .result-title {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="config-popup popup-container active">
+        <div class="config-container quiz-box">
+            <h2 class="config-title">Shifokorlar bo'limi</h2>
+
+            <div class="config-option">
+                <h4 class="option-title">Mutaxasisligingizni tanlang</h4>
+                <div class="category-options">
+                    <button class="category-option active">Reanimatolog</button>
+                    <button class="category-option">Otorinolaringolog</button>
+                    <button class="category-option" id="pat">Ortoped</button>
+
+                </div>
+            </div>
+
+            <div class="config-option">
+                <h4 class="option-title">Savollar soni</h4>
+                <div class="question-options">
+                    <button class="question-option">5</button>
+                    <button class="question-option active">10</button>
+                    <button class="question-option">15</button>
+                    <button class="question-option">20</button>
+                    <button class="question-option">25</button>
+                </div>
+            </div>
+
+            <button class="start-quiz-btn">Testni boshlash</button>
+        </div>
+    </div>
+
+
+    <div class="quiz-popup popup-container">
+        <div class="quiz-container quiz-box">
+            <header class="quiz-header">
+                <h2 class="quiz-title">Savollar</h2>
+                <div class="quiz-timer">
+                    <span class="material-symbols-rounded">timer</span>
+                    <p class="timer-duration"></p>
+                </div>
+            </header>
+
+            <div class="quiz-content">
+                <h1 class="question-text"></h1>
+                <ul class="answer-options"></ul>
+            </div>
+
+            <div class="quiz-footer">
+                <p class="question-status"></p>
+                <button class="next-question-btn">
+                    Keyingi
+                    <span class="material-symbols-rounded">arrow_right_alt</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Result Popup -->
+    <div class="result-popup popup-container">
+        <div class="result-container quiz-box">
+            <div class="result-img">
+                <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                <lord-icon src="https://cdn.lordicon.com/yqgsjpsy.json" trigger="hover" style="width:250px;height:250px">
+                </lord-icon>
+            </div>
+            <h2 class="result-title">Test yakunlandi!</h2>
+            <p class="result-message"></p>
+            <button class="try-again-btn">Qayta boshlash</button>
+        </div>
+    </div>
+
+
+    <script>
+        const questions = [{
+                category: "Reanimatolog",
+                questions: [{
+                        question: "Izofluran qanday ta'sir qiladi?",
+                        options: [
+                            "Jigar arteriyasi va portal venasida qon oqimini oshiradi",
+                            "Jigar arteriyasi va portal venasida qon oqimini pasaytiradi",
+                            "Jigar arteriyasida qon oqimini oshiradi va portal venada kamayadi",
+                            "Jigar funktsiyasi testlari natijalariga sezilarli ta'sir qiladi"
+                        ],
+                        correctAnswer: 2
+                    },
+                    {
+                        question: "Aldosteronni nazorat qiladi?",
+                        options: [
+                            "Kaltsiyni yo'qotish",
+                            "Natriyni ushlab turish",
+                            "Natriyning yo'qolishi",
+                            "Glyukozani ushlab turish"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Adrenalin qanday ta'sir qiladi?",
+                        options: [
+                            "Triptofandan sintezlanadi",
+                            "Oshqozon-ichak harakatlarini oshiradi",
+                            "5-gidroksiindolasetik kislotaga metabollanadi",
+                            "Lipolizni oshiradi"
+                        ],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "Yurak tamponadasi belgilari?",
+                        options: [
+                            "Sistolik shovqin",
+                            "Markaziy venoz bosimning oshishi",
+                            "Siyanoz",
+                            "Paradoksal puls"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Uchinchi darajali shokning belgilari?",
+                        options: [
+                            "AQB 100-90 mm Hg, IA 0,8-1, qon yo'qotish 1000 ml dan oshmaydi",
+                            "AQB aniqlanmaydi, qon yo'qotish 3000 ml dan ortiq",
+                            "AQB 85-70 mm Hg, IA 1-2, qon yo'qotish taxminan 2000 ml",
+                            "Qon bosimi 70 mm Hg. va pastda, IA 2 va undan yuqori, qon yo'qotish 3000 ml dan oshmaydi"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Midazolamning yarim yemirilish davri qancha?",
+                        options: [
+                            "1,8-3,1 soat",
+                            "20-120 soat",
+                            "3-11 soat",
+                            "50 soat"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Sun’iy nafas ventilyatsiyasi qanday usul orqali amalga oshiriladi?",
+                        options: [
+                            "Bosimni qo'llab-quvvatlash (PS)",
+                            "Ovozni boshqariladigan ventilyatsiya (VCV)",
+                            "Yordamchi majburiy rejim (ACV)",
+                            "Sinxronlashtirilgan intervalgacha majburiy ventilyatsiya (SIMV)"
+                        ],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "Bupivakainning noto'g'ri xususiyati qaysi?",
+                        options: [
+                            "Xolinesteraza tomonidan parchalanadi",
+                            "Lidokainga nisbatan pastroq jigar ekstraktsiyasiga ega",
+                            "Sekin kaltsiy kanallarini bloklaydi",
+                            "Qorincha fibrilatsiyasiga olib kelishi mumkin"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Dural punksiyadan keyin bosh og'rig'ining o'rtacha davomiyligi?",
+                        options: [
+                            "7 soat",
+                            "12 soat",
+                            "2 soat",
+                            "24 soat"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Fentanil morfindan necha marta kuchliroq?",
+                        options: [
+                            "100 marta",
+                            "500 marta",
+                            "10 marta",
+                            "5 marta"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Propofol (Diprivan) qanday xususiyatga ega?",
+                        options: [
+                            "Asosan siydik bilan o'zgarmagan holda chiqariladi",
+                            "Miya qon aylanishini oshiradi",
+                            "Malign gipertermiyaga olib kelishi mumkin",
+                            "Markaziy nafasni susaytiruvchi vositadir"
+                        ],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "Azot oksidining MAK qiymati qancha?",
+                        options: [
+                            "0,16%",
+                            "1,7%",
+                            "40%",
+                            "105%"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "O'pka-yurak reanimatsiyasi qanday boshlanadi?",
+                        options: [
+                            "O'pkaning sun'iy ventilyatsiyasi",
+                            "Bilvosita yurak massaji",
+                            "Dori vositalarini joriy etish",
+                            "Havo yo'llarining o'tkazuvchanligini ta'minlash"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Kompenstatsiyalangan metabolik atsidozda arterial qonda nima mavjud?",
+                        options: [
+                            "HCO3 ning ko'payishi",
+                            "BE ning pasayishi",
+                            "pCO2 ning ortishi",
+                            "pH oshishi"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Septik shokda dobutamin tayinlashning maqsadi nima?",
+                        options: [
+                            "Miokardning beta-adrenergik retseptorlariga ta'sir qilish",
+                            "Bronxial beta-adrenergik retseptorlarni rag'batlantirish",
+                            "Yurak minutlik hajmini oshirish",
+                            "Buyrak qon oqimini yaxshilash"
+                        ],
+                        correctAnswer: 2
+                    },
+                    {
+                        question: "Chap qorincha orqa devorining keng infarkti fonida yurak tutilishining eng ko'p turi?",
+                        options: [
+                            "Sinus tugunidan impulslarni qabul qilishni tugatish",
+                            "Asistoliya",
+                            "Bo’lmachalar fibrilatsiya",
+                            "Qorincha fibrilatsiyasi"
+                        ],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "Gipovolemiyaning eng ishonchli belgisi?",
+                        options: [
+                            "Past qon bosimi",
+                            "Markaziy venoz bosimning pastligi",
+                            "Siqilgan periferik tomirlar",
+                            "Tezlashgan zaif puls"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Paratsetamol bilan zaharlanishda nishon organ?",
+                        options: [
+                            "Qon",
+                            "Yurak",
+                            "Buyraklar",
+                            "Jigar"
+                        ],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "Qon aylanishining giperdinamik turi nimasi bilan tavsiflanadi?",
+                        options: [
+                            "Prednagruzka yuqori va past postnagruzka",
+                            "Prednagruzka past va past postnagruzka",
+                            "Prednagruzka yuqori va yuqori postnagruzka",
+                            "Prednagruzka past va yuqori postnagruzka"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Anafilaktik shokning asosiy belgisi nima?",
+                        options: [
+                            "Qon bosimining oshishi",
+                            "Tana haroratining ko‘tarilishi",
+                            "Keskin qon bosimi tushishi va nafas yetishmovchiligi",
+                            "Ko‘z oldida qora dog‘lar paydo bo‘lishi"
+                        ],
+                        correctAnswer: 2
+                    },
+                    {
+                        question: "Qaysi holat yurak-o‘pka reanimatsiyasiga ko‘rsatma hisoblanadi?",
+                        options: [
+                            "Arterial bosim pasayishi",
+                            "Bemorda hush yo‘q va nafas yo‘q",
+                            "Tana haroratining keskin tushishi",
+                            "Ko‘krak sohasida og‘riq paydo bo‘lishi"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "O‘pka shishi paytida birinchi yordam qanday amalga oshiriladi?",
+                        options: [
+                            "O‘pkani sun’iy shamollatish va kislorod berish",
+                            "Bemorni yotqizish va ko‘p suyuqlik ichirish",
+                            "Antibiotiklar yuborish",
+                            "Bemorni faqat kuzatish"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Kaliy yetishmovchiligi qanday belgilar bilan namoyon bo‘ladi?",
+                        options: [
+                            "Mushaklarning zaifligi va yurak ritmining buzilishi",
+                            "Ko‘zning yorug‘likka sezgirligi oshishi",
+                            "Tana haroratining ko‘tarilishi",
+                            "Tomoqda og‘riq va yo‘tal"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Tana harorati 32°C dan pastga tushganda nima sodir bo‘ladi?",
+                        options: [
+                            "Gipetermiya",
+                            "Gipotermiya va yurak ritmi buzilishi",
+                            "Bosimning oshishi",
+                            "O‘tkir nafas yetishmovchiligi"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Markaziy venoz bosim nima uchun o‘lchanadi?",
+                        options: [
+                            "Qon aylanish holatini baholash",
+                            "Tana haroratini aniqlash",
+                            "O‘pkadagi suyuqlik miqdorini aniqlash",
+                            "Arterial bosimni o‘lchash uchun"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Og‘ir nafas yetishmovchiligi bo‘lgan bemorda birinchi yordam qanday amalga oshiriladi?",
+                        options: [
+                            "Kislorod terapiyasi va sun’iy nafas oldirish",
+                            "Bemorni iliq kiyintirish",
+                            "Ko‘proq suv ichirish",
+                            "Qon bosimini oshiruvchi dorilar berish"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Qon quyishda asosiy xavf qanday?",
+                        options: [
+                            "Infeksion kasalliklarni yuqishi",
+                            "Tana haroratining ko‘tarilishi",
+                            "Qon bosimining oshishi",
+                            "Nafas olishning tezlashishi"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Shok holatida vena ichiga suyuqlik yuborishning asosiy maqsadi nima?",
+                        options: [
+                            "Qon bosimini normallashtirish",
+                            "Natriy miqdorini oshirish",
+                            "Qonning suyuqligini oshirish",
+                            "Qizil qon hujayralari sonini kamaytirish"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Hipovolemik shokning asosiy sababi nima?",
+                        options: [
+                            "Qon yo‘qotish yoki suyuqlik yetishmovchiligi",
+                            "Qon bosimining oshishi",
+                            "Nafas olishning tezlashishi",
+                            "Jigar yetishmovchiligi"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Tromboemboliyaning asosiy xavfi nima?",
+                        options: [
+                            "Nafas yetishmovchiligi va yurak to‘xtashi",
+                            "Tana haroratining tushishi",
+                            "Ko‘zning xiralashishi",
+                            "Tomoq qichishishi"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Septik shokda birinchi yordam sifatida nima qilish kerak?",
+                        options: [
+                            "Antibiotik terapiyani boshlash",
+                            "Bemorni yotqizish va suyuqlik berish",
+                            "Issiq kiyintirish va issiq choy ichirish",
+                            "Faqat arterial bosimni kuzatish"
+                        ],
+                        correctAnswer: 0
+                    }
+
+
+
+
+
+                ]
+            },
+
+            {
+                category: "Stomatolog",
+                questions: [{
+                        question: "Reanimatologiyada birinchi yordamning asosiy tamoyili nima?",
+                        options: [
+                            "Bemorga darhol shifokor chaqirish",
+                            "Hayotiy muhim a’zolar faoliyatini tiklash",
+                            "Bemorni nafas olish yo‘llarini ochish",
+                            "Bemorni darhol operatsiya qilish"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Kardiopulmoner reanimatsiyada birinchi qadam nima?",
+                        options: [
+                            "Sun'iy nafas berish",
+                            "Yurakni tashqi massaj qilish",
+                            "Nafas yo‘llarini tekshirish",
+                            "Bemorni yonboshlatib yotqizish"
+                        ],
+                        correctAnswer: 2
+                    }
+                ]
+            },
+            {
+                category: "Stomatologiya",
+                questions: [{
+                        question: "Kariesning asosiy sababi nima?",
+                        options: [
+                            "Tishlarning noto‘g‘ri parvarishi",
+                            "Vitamin yetishmovchiligi",
+                            "Bakterial infektsiya",
+                            "Barchasi to‘g‘ri"
+                        ],
+                        correctAnswer: 3
+                    },
+                    {
+                        question: "Tish emalining asosiy tarkibiy qismi nima?",
+                        options: [
+                            "Kaltsiy va fosfor",
+                            "Temir va magniy",
+                            "Vitamin D va B12",
+                            "Oqsillar va yog‘lar"
+                        ],
+                        correctAnswer: 0
+                    }
+                ]
+            },
+            {
+                category: "Ortoped",
+                questions: [{
+                        question: "Ortopediya qanday kasalliklarni o‘rganadi?",
+                        options: [
+                            "Tish va milk kasalliklarini",
+                            "Suyak va bo‘g‘im kasalliklarini",
+                            "Yurak-qon tomir kasalliklarini",
+                            "Ko‘z kasalliklarini"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Qaysi kasallikda suyaklarning mo‘rtlashishi kuzatiladi?",
+                        options: [
+                            "Artrit",
+                            "Osteoporoz",
+                            "Skolioz",
+                            "Luxasiya"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+        question: "Ortopediya qaysi kasalliklarni o‘rganadi?",
+        options: [
+          "Ichki organ kasalliklarini",
+          "Suyak, bo‘g‘im va mushak tizimi kasalliklarini",
+          "Asab tizimi kasalliklarini",
+          "O‘pka va yurak kasalliklarini"
+        ],
+        correctAnswer: 1
+},
+{
+        question: "Osteoporoz qanday kasallik?",
+        options: [
+          "Suyak zichligining kamayishi va mo‘rtlashishi",
+          "Suyaklarning haddan tashqari qalinlashishi",
+          "Bo‘g‘im yallig‘lanishi",
+          "Qon aylanishining buzilishi"
+        ],
+        correctAnswer: 0
+},
+{
+        question: "Skolioz bu qanday patologiya?",
+        options: [
+          "Orqa miya asabining zararlanishi",
+          "Umurtqaning yon tomonga egriligi",
+          "Bo‘g‘imlarning qattiqlashishi",
+          "Orqa miya diskining shikastlanishi"
+        ],
+        correctAnswer: 1
+},
+{
+        question: "Artrit qanday kasallik?",
+        options: [
+          "Bo‘g‘im yallig‘lanishi",
+          "Suyak zichligining oshishi",
+          "Orqa miya jarohati",
+          "Qon bosimining oshishi"
+        ],
+        correctAnswer: 0
+},
+{
+        question: "Ortopedik protezlar qanday maqsadda qo‘llaniladi?",
+        options: [
+          "Ichki organlarning ishlashini yaxshilash",
+          "Yo‘qotilgan yoki shikastlangan suyak yoki bo‘g‘imlarni almashtirish",
+          "Yurak ritmini boshqarish",
+          "Ko‘zning ko‘rish qobiliyatini tiklash"
+        ],
+        correctAnswer: 1
+},
+{
+        question: "Revmatoid artrit qanday farqlanadi?",
+        options: [
+          "Faqat bitta bo‘g‘imni zararlaydi",
+          "Autoimmun kasallik bo‘lib, bir nechta bo‘g‘imlarni zararlaydi",
+          "Faqat keksa yoshdagilarda uchraydi",
+          "Yurak ritmiga ta’sir qiladi"
+        ],
+        correctAnswer: 1
+},
+{
+        question: "Ortopediya sohasida eng ko‘p qo‘llaniladigan diagnostik usul qaysi?",
+        options: [
+          "EKG",
+          "Rentgen",
+          "Endoskopiya",
+          "MRI"
+        ],
+        correctAnswer: 1
+},
+{
+        question: "Ploskostopiya nima?",
+        options: [
+          "Umurtqa pog‘onasining egriligi",
+          "Yassi tovon sindromi",
+          "Bo‘g‘im ichida suyuqlik to‘planishi",
+          "Orqa miya disk churrasi"
+        ],
+        correctAnswer: 1
+},
+{
+        question: "Ortopedik reabilitatsiyaning asosiy maqsadi nima?",
+        options: [
+          "Ichki organlarni davolash",
+          "Bo‘g‘im va mushaklarning harakatini tiklash",
+          "Yurak kasalliklarini oldini olish",
+          "Suyak zichligini oshirish"
+        ],
+        correctAnswer: 1
+},
+{
+        question: "Gipertenziya qanday kasallik?",
+        options: [
+          "Qon bosimining oshishi",
+          "Suyakning mo‘rtlashishi",
+          "Umurtqa pog‘onasining egriligi",
+          "Mushaklarning zaiflashishi"
+        ],
+        correctAnswer: 0
+},
+{
+        question: "Menisk yirtilishi qaysi bo‘g‘imda yuz beradi?",
+        options: [
+          "Yelka bo‘g‘imi",
+          "Tizza bo‘g‘imi",
+          "Oyoq panjasi",
+          "Bilak bo‘g‘imi"
+        ],
+        correctAnswer: 1
+},
+{
+        question: "Ortopedik davolashda fizioterapiya qanday ahamiyatga ega?",
+        options: [
+          "Mushaklar tonusini oshiradi va og‘riqni kamaytiradi",
+          "Ichki organlarni davolaydi",
+          "Suyaklarni mustahkamlaydi",
+          "Tananing immunitetini oshiradi"
+        ],
+        correctAnswer: 0
+},
+{
+        question: "O‘smirlarda eng ko‘p uchraydigan ortopedik muammo qaysi?",
+        options: [
+          "Skolioz",
+          "Osteoporoz",
+          "Artrit",
+          "Oyoq panjasi jarohati"
+        ],
+        correctAnswer: 0
+},
+{
+        question: "Disk churrasi nima?",
+        options: [
+          "Bo‘g‘im yallig‘lanishi",
+          "Orqa miya diskining siljishi va nervlarni bosishi",
+          "Suyak sinishi",
+          "Qon bosimi pasayishi"
+        ],
+        correctAnswer: 1
+},
+{
+        question: "Umurtqa pog‘onasining qaysi qismi eng ko‘p jarohatlanadi?",
+        options: [
+          "Servikal (bo‘yin) qismi",
+          "Torakal (ko‘krak) qismi",
+          "Lumbal (bel) qismi",
+          "Sakral qismi"
+        ],
+        correctAnswer: 2
+},
+{
+        question: "Tizza bo‘g‘imi jarohatlarida eng ko‘p zararlanuvchi tuzilma qaysi?",
+        options: [
+          "Menisk",
+          "Klavikula",
+          "Yelka mushaklari",
+          "Orqa miya nervlari"
+        ],
+        correctAnswer: 0
+},
+{
+        question: "Qaysi holatda ortopedik korrektorlar tavsiya etiladi?",
+        options: [
+          "Skolioz va yassi tovon sindromida",
+          "Faqat artritda",
+          "Faqat osteoporozda",
+          "Faqat bo‘g‘im shikastlanishida"
+        ],
+        correctAnswer: 0
+},
+{
+        question: "Ortopediya qaysi yosh guruhlarida uchraydigan muammolarni o‘rganadi?",
+        options: [
+          "Faqat bolalar va yoshlarda",
+          "Faqat keksa yoshdagilarda",
+          "Barcha yosh guruhlarida",
+          "Faqat sportchilar orasida"
+        ],
+        correctAnswer: 2
+},
+{
+        question: "Reabilitatsiyada massaj qanday rol o‘ynaydi?",
+        options: [
+          "Suyak zichligini oshiradi",
+          "Mushaklarni bo‘shashtiradi va qon aylanishini yaxshilaydi",
+          "Ichki organlarni davolaydi",
+          "Bo‘g‘imlarning harakatini cheklaydi"
+        ],
+        correctAnswer: 1
+},
+{
+        question: "Tizza bo‘g‘imining artrozi qanday belgilar bilan namoyon bo‘ladi?",
+        options: [
+          "Tizza shishishi, og‘riq va harakatning cheklanishi",
+          "Burun qon ketishi",
+          "Tana haroratining oshishi",
+          "Bosh aylanishi"
+        ],
+        correctAnswer: 0
+},
+{
+        question: "Ortopedik jarrohlikda protezlash qanday maqsadda qilinadi?",
+        options: [
+          "Suyak zichligini oshirish",
+          "Shikastlangan bo‘g‘im yoki suyakni almashtirish",
+          "Ichki organlarni tiklash",
+          "Mushaklarning elastikligini oshirish"
+        ],
+        correctAnswer: 1
+},
+{
+        question: "Yassi tovon sindromining asosiy sababi nima?",
+        options: [
+          "Genetik moyillik va noto‘g‘ri poyabzal kiyish",
+          "Qon bosimining oshishi",
+          "Burun egriligi",
+          "Tomoq infeksiyasi"
+        ],
+        correctAnswer: 0
+},
+{
+        question: "Ortopedik muammolarning oldini olish uchun qanday choralar ko‘riladi?",
+        options: [
+          "To‘g‘ri qomat saqlash va jismoniy faollik",
+          "Faqat dori vositalari qabul qilish",
+          "Ortopedik protez o‘rnatish",
+          "Faqat shifokor tavsiyalariga rioya qilish"
+        ],
+        correctAnswer: 0
+}
+                ]
+            },
+            {
+                category: "Otorinolaringolog",
+                questions: [{
+                        question: "Otorinolaringologiya qaysi kasalliklarni o‘rganadi?",
+                        options: [
+                            "Burun, quloq va tomoq kasalliklari",
+                            "Ko‘z kasalliklari",
+                            "Teri kasalliklari",
+                            "Yurak kasalliklari"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Otit qanday kasallik?",
+                        options: [
+                            "Burun yallig‘lanishi",
+                            "Quloqning yallig‘lanishi",
+                            "Tomoq shilliq pardasining shishishi",
+                            "Halqumning yallig‘lanishi"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "O‘tkir rinitning asosiy sababi nima?",
+                        options: [
+                            "Bakterial infeksiya",
+                            "Allergik reaktsiya",
+                            "Virusli infeksiya",
+                            "Burun deviasiyasi"
+                        ],
+                        correctAnswer: 2
+                    },
+                    {
+                        question: "Anginaning eng keng tarqalgan qo‘zg‘atuvchisi qaysi?",
+                        options: [
+                            "Streptokokk",
+                            "Stafilokokk",
+                            "Virus",
+                            "Zamburug‘"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "O‘rta quloq yallig‘lanishi qanday nomlanadi?",
+                        options: [
+                            "Otit",
+                            "Sinusit",
+                            "Faringit",
+                            "Laringit"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Burundan qon ketishning eng keng tarqalgan sababi nima?",
+                        options: [
+                            "Arterial gipertenziya",
+                            "Burun shilliq qavatining shikastlanishi",
+                            "Allergik reaktsiya",
+                            "O‘smalar"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Tomoq og‘rig‘ining eng keng tarqalgan sababi nima?",
+                        options: [
+                            "Virusli infeksiya",
+                            "Refluks",
+                            "Chang va allergenlar",
+                            "Tamaki tutuni"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Burun bitishi va allergik rinitda eng samarali davo usuli nima?",
+                        options: [
+                            "Burunni fiziologik eritma bilan yuvish",
+                            "Antibiotik qabul qilish",
+                            "Antihistaminlar va kortikosteroid purkagichlar",
+                            "Jarrohlik amaliyoti"
+                        ],
+                        correctAnswer: 2
+                    },
+                    {
+                        question: "O‘rta otitda asosiy simptom nima?",
+                        options: [
+                            "Burun bitishi",
+                            "Eshitish pasayishi va quloq og‘rig‘i",
+                            "Tomoq og‘rig‘i",
+                            "Ko‘zning qizarishi"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Tonzillit qanday kasallik?",
+                        options: [
+                            "Burun shilliq qavatining yallig‘lanishi",
+                            "Halqum limfoid to‘qimalarining yallig‘lanishi",
+                            "O‘rta quloq infeksiyasi",
+                            "Tomoq mushaklarining spazmi"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Laringitda asosiy belgilar qaysilar?",
+                        options: [
+                            "Bosh og‘rig‘i va yo‘tal",
+                            "Ovozning yo‘qolishi va quruq yo‘tal",
+                            "Burundan qon ketishi",
+                            "Ko‘zning yoshlanishi"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Quloqdagi infeksiyalarda eng ko‘p uchraydigan asorat nima?",
+                        options: [
+                            "Yuz falaji",
+                            "Eshitish yo‘qolishi",
+                            "Meningit",
+                            "Burun bitishi"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Faringit qanday kasallik?",
+                        options: [
+                            "Burun yo‘llarining yallig‘lanishi",
+                            "Halqum shilliq qavatining yallig‘lanishi",
+                            "Tovoqsimon bezlarning yallig‘lanishi",
+                            "Laringeal mushaklarning spazmi"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Laringospazm nima?",
+                        options: [
+                            "Burun bitishi",
+                            "Quloq bosimining oshishi",
+                            "Halqum mushaklarining keskin qisqarishi",
+                            "Ovozni yo‘qotish"
+                        ],
+                        correctAnswer: 2
+                    },
+                    {
+                        question: "Burun yuvish uchun eng xavfsiz eritma nima?",
+                        options: [
+                            "Antibiotik eritmalari",
+                            "Izotonik fiziologik eritma",
+                            "Spirtli eritmalar",
+                            "Suv va sirka aralashmasi"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Burunning o‘rta deviasiyasi qanday muammolarga olib keladi?",
+                        options: [
+                            "Quloq infeksiyalari",
+                            "Burun bitishi va nafas olish qiyinligi",
+                            "Ko‘z qizarishi",
+                            "Tomoq qichishishi"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Sinusitning asosiy belgilaridan biri nima?",
+                        options: [
+                            "Bosh og‘rig‘i va burun bitishi",
+                            "Quloq og‘rig‘i",
+                            "Tomoq shishishi",
+                            "Ko‘zning yoshlanishi"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "O‘tkir otit qanday asoratga olib kelishi mumkin?",
+                        options: [
+                            "Meningit",
+                            "Burun qon ketishi",
+                            "Laringit",
+                            "Allergiya"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Tonsillektomiya nima?",
+                        options: [
+                            "Burun poliplarini olib tashlash",
+                            "O‘rta quloq yallig‘lanishini davolash",
+                            "Tomoq bezlarini jarrohlik yo‘li bilan olib tashlash",
+                            "Burun suyaklarini tekislash operatsiyasi"
+                        ],
+                        correctAnswer: 2
+                    },
+                    {
+                        question: "Burundan qon ketishning oldini olish uchun nima qilish kerak?",
+                        options: [
+                            "Burunni tez-tez artish",
+                            "Burun ichini namlash va changdan saqlanish",
+                            "Ko‘p suyuqlik ichish",
+                            "Antibiotik qabul qilish"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Burun poliplari qanday asoratga olib kelishi mumkin?",
+                        options: [
+                            "Burunning quruqlashishi",
+                            "Nafas olish qiyinligi va hid sezishning yo‘qolishi",
+                            "Quloq og‘rig‘i",
+                            "Tomoq shishishi"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Eshitish nervining zararlanishi qanday nomlanadi?",
+                        options: [
+                            "Sensorinural eshitish yo‘qolishi",
+                            "O‘rta otit",
+                            "Labirintit",
+                            "Tinnitus"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Kronik tonzillit qanday belgilar bilan namoyon bo‘ladi?",
+                        options: [
+                            "Burunning quruqlashishi",
+                            "Doimiy tomoq og‘rig‘i va yomon nafas hidi",
+                            "Ko‘z qizarishi",
+                            "Quloq shang‘illashi"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        question: "Burunning chap tomonga deviasiyasi nimaga olib kelishi mumkin?",
+                        options: [
+                            "Chap burun yo‘lining torayishi va nafas qiyinlashishi",
+                            "Quloq ichida bosimning pasayishi",
+                            "Tomoq infeksiyalarining kamayishi",
+                            "Ko‘zning yorug‘likka sezgirligi oshishi"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Allergik rinitning asosiy belgisi nima?",
+                        options: [
+                            "Burun bitishi va hapşırık",
+                            "Tomoq og‘rig‘i",
+                            "Quloq og‘rig‘i",
+                            "Ko‘z qizarishi"
+                        ],
+                        correctAnswer: 0
+                    },
+                    {
+                        question: "Laringit qanday sabab bilan yuzaga kelishi mumkin?",
+                        options: [
+                            "Virusli infeksiya",
+                            "Oshqozon reflyuksi",
+                            "Sovuq havo ta'siri",
+                            "Barcha javoblar to‘g‘ri"
+                        ],
+                        correctAnswer: 3
+                    }
+                ]
+            }
+        ];
+    </script>
+    <script>
+        // DOM element selectors
+        const configContainer = document.querySelector(".config-container");
+        const quizContainer = document.querySelector(".quiz-container");
+        const answerOptions = quizContainer.querySelector(".answer-options");
+        const nextQuestionBtn = quizContainer.querySelector(".next-question-btn");
+        const questionStatus = quizContainer.querySelector(".question-status");
+        const timerDisplay = quizContainer.querySelector(".timer-duration");
+        const resultContainer = document.querySelector(".result-container");
+
+        // Quiz state variables
+        const QUIZ_TIME_LIMIT = 60;
+        let currentTime = QUIZ_TIME_LIMIT;
+        let timer = null;
+        let quizCategory = "programming";
+        let numberOfQuestions = 1000;
+        let currentQuestion = null;
+        const questionsIndexHistory = [];
+        let correctAnswersCount = 0;
+        let disableSelection = false;
+
+        // Display the quiz result and hide the quiz container
+        const showQuizResult = () => {
+            clearInterval(timer);
+            document.querySelector(".quiz-popup").classList.remove("active");
+            document.querySelector(".result-popup").classList.add("active");
+
+            const resultText = `Siz <b>${correctAnswersCount}</b> ta to\'g\'ri javob berdingiz. Savollar soni: <b>${numberOfQuestions}</b>`;
+            resultContainer.querySelector(".result-message").innerHTML = resultText;
+        };
+
+        // Clear and reset the timer
+        const resetTimer = () => {
+            clearInterval(timer);
+            currentTime = QUIZ_TIME_LIMIT;
+            timerDisplay.textContent = `${currentTime}s`;
+        };
+
+        // Initialize and start the timer for the current question
+        const startTimer = () => {
+            timer = setInterval(() => {
+                currentTime--;
+                timerDisplay.textContent = `${currentTime}s`;
+
+                if (currentTime <= 0) {
+                    clearInterval(timer);
+                    disableSelection = true;
+                    nextQuestionBtn.style.visibility = "visible";
+                    quizContainer.querySelector(".quiz-timer").style.background = "#c31402";
+                    highlightCorrectAnswer();
+
+                    // Disable all answer options after one option is selected
+                    answerOptions.querySelectorAll(".answer-option").forEach((option) => (option.style.pointerEvents = "none"));
+                }
+            }, 1000);
+        };
+
+        // Fetch a random question from based on the selected category
+        const getRandomQuestion = () => {
+            const categoryQuestions = questions.find((cat) => cat.category.toLowerCase() === quizCategory.toLowerCase())?.questions || [];
+
+            // Show the results if all questions have been used
+            if (questionsIndexHistory.length >= numberOfQuestions) {
+                return showQuizResult();
+            }
+
+
+            // Filter out already asked questions and choose a random one
+            const availableQuestions = categoryQuestions.filter((_, index) => !questionsIndexHistory.includes(index));
+            const randomQuestion = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
+
+            questionsIndexHistory.push(categoryQuestions.indexOf(randomQuestion));
+            return randomQuestion;
+        };
+
+        // Highlight the correct answer option and add icon
+        const highlightCorrectAnswer = () => {
+            const correctOption = answerOptions.querySelectorAll(".answer-option")[currentQuestion.correctAnswer];
+            correctOption.classList.add("correct");
+            const iconHTML = `<span class="material-symbols-rounded"> check_circle </span>`;
+            correctOption.insertAdjacentHTML("beforeend", iconHTML);
+        };
+
+        // Handle the user's answer selection
+        const handleAnswer = (option, answerIndex) => {
+            if (disableSelection) return;
+            clearInterval(timer);
+            disableSelection = true;
+
+            const isCorrect = currentQuestion.correctAnswer === answerIndex;
+            option.classList.add(isCorrect ? "correct" : "incorrect");
+            !isCorrect ? highlightCorrectAnswer() : correctAnswersCount++;
+
+            // Insert icon based on correctness
+            const iconHTML = `<span class="material-symbols-rounded"> ${isCorrect ? "check_circle" : "cancel"} </span>`;
+            option.insertAdjacentHTML("beforeend", iconHTML);
+
+            // Disable all answer options after one option is selected
+            answerOptions.querySelectorAll(".answer-option").forEach((option) => (option.style.pointerEvents = "none"));
+
+            nextQuestionBtn.style.visibility = "visible";
+        };
+
+        // Render the current question and its options in the quiz
+        const renderQuestion = () => {
+            currentQuestion = getRandomQuestion();
+            if (!currentQuestion) return;
+            disableSelection = false;
+
+            resetTimer();
+            startTimer();
+
+            // Update the UI
+            nextQuestionBtn.style.visibility = "hidden";
+            quizContainer.querySelector(".quiz-timer").style.background = "#32313C";
+            quizContainer.querySelector(".question-text").textContent = currentQuestion.question;
+            questionStatus.innerHTML = `<b>${questionsIndexHistory.length}</b>- savol <b>${numberOfQuestions}</b> tadan`;
+            answerOptions.innerHTML = "";
+
+            // Create option <li> elements, append them, and add click event listeners
+            currentQuestion.options.forEach((option, index) => {
+                const li = document.createElement("li");
+                li.classList.add("answer-option");
+                li.textContent = option;
+                answerOptions.append(li);
+                li.addEventListener("click", () => handleAnswer(li, index));
+            });
+        };
+
+        // Start the quiz and render the random question
+        const startQuiz = () => {
+            document.querySelector(".config-popup").classList.remove("active");
+            document.querySelector(".quiz-popup").classList.add("active");
+
+            // Update the quiz category and number of questions
+            quizCategory = configContainer.querySelector(".category-option.active").textContent;
+            numberOfQuestions = parseInt(configContainer.querySelector(".question-option.active").textContent);
+
+            renderQuestion();
+        };
+
+        // Highlight the selected option on click - category or no. of question
+        configContainer.querySelectorAll(".category-option, .question-option").forEach((option) => {
+            option.addEventListener("click", () => {
+                option.parentNode.querySelector(".active").classList.remove("active");
+                option.classList.add("active");
+            });
+        });
+
+        // Reset the quiz and return to the configuration container
+        const resetQuiz = () => {
+            resetTimer();
+            correctAnswersCount = 0;
+            questionsIndexHistory.length = 0;
+            document.querySelector(".config-popup").classList.add("active");
+            document.querySelector(".result-popup").classList.remove("active");
+        };
+
+        // Event listeners
+        nextQuestionBtn.addEventListener("click", renderQuestion);
+        resultContainer.querySelector(".try-again-btn").addEventListener("click", resetQuiz);
+        configContainer.querySelector(".start-quiz-btn").addEventListener("click", startQuiz);
+    </script>
+</body>
+
+</html>
